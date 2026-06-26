@@ -18,6 +18,13 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export DOTFILES_DIR
 
+for arg in "$@"; do
+  if [[ "${arg}" == "--dry-run" ]]; then
+    export LOG_FILE="${TMPDIR:-/tmp}/lumina-dots-dry-run-$(date +%Y%m%d-%H%M%S).log"
+    break
+  fi
+done
+
 # ─── Source libraries ──────────────────────────────────────────────────────────
 # shellcheck source=lib/log.sh
 source "${DOTFILES_DIR}/lib/log.sh"
