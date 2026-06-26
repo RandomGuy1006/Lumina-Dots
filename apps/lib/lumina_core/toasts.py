@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import shutil
-import subprocess
 from typing import Any
 
 from .ipc import call
@@ -18,18 +16,7 @@ def toast(
     category: str = "info",
 ) -> None:
     category = category if category in ICON_MAP else "info"
-    if call("dev.lumina.toast.Send", message, subtitle, category):
-        return
-    _system_fallback(message, subtitle, category)
-
-
-def _system_fallback(message: str, subtitle: str = "", category: str = "info", icon: str = "", duration: int | None = None) -> None:
-    """Notification-daemon fallback used only inside the platform toast layer."""
-    category = category if category in ICON_MAP else "info"
-    if not shutil.which("notify-send"): return
-    timeout = DURATIONS[category] if duration is None else int(duration)
-    args = ["notify-send", "--app-name=Lumina", f"--expire-time={timeout}", f"--icon={icon or ICON_MAP[category]}", message, subtitle]
-    subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    call("dev.lumina.toast.Send", message, subtitle, category)
 
 
 class LuminaToastOverlay:
