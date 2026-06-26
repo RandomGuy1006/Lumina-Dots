@@ -1,0 +1,7 @@
+[Unit]
+Description=LOQ desktop session target
+After=graphical-session-pre.target graphical-session.target
+Wants=loq-swww.service loq-cliphist-text.service loq-cliphist-image.service loq-hypridle.service loq-hyprpanel.service loq-hyprswitch.service lumina-core.service lumina-control-center.service lumina-keybind-overlay.service lumina-shell.service lumina-welcome.service
+
+[Install]
+WantedBy=graphical-session.target

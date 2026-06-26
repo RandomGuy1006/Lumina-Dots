@@ -1,0 +1,35 @@
+name: Docs
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate docs
+        run: bash tests/validate-docs.sh
+      - name: Check markdown links
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path.cwd()
+          missing = []
+          for path in list((root / "docs").glob("*.md")) + [root / "README.md"]:
+              text = path.read_text(encoding="utf-8")
+              for label, target in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", text):
+                  if "://" in target or target.startswith("#") or target.startswith("mailto:"):
+                      continue
+                  clean = target.split("#", 1)[0]
+                  if not clean:
+                      continue
+                  dest = (path.parent / clean).resolve()
+                  if not dest.exists():
+                      missing.append(f"{path.relative_to(root)} -> {target}")
+          if missing:
+              print("Broken markdown links:")
+              print("\n".join(missing))
+              sys.exit(1)
+          PY

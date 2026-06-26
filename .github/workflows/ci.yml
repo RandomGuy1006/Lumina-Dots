@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck shfmt
+          python3 -m pip install ruff
+
+      - name: Bash syntax
+        run: |
+          find . -type f \( -name '*.sh' -o -name 'install.sh' -o -name 'update.sh' -o -name 'setup' \) \
+            -not -path './.git/*' -print0 | xargs -0 -n1 bash -n
+
+      - name: shellcheck
+        run: |
+          find lib scripts tests local-bin -type f \( -name '*.sh' -o -path 'local-bin/*' \) \
+            -not -path './.git/*' -print0 | xargs -0 shellcheck -S warning
+          shellcheck -S warning install.sh update.sh setup
+
+      - name: shfmt
+        run: |
+          find lib scripts tests -type f -name '*.sh' -print0 | xargs -0 shfmt -d -i 2 -ci
+          shfmt -d -i 2 -ci install.sh update.sh setup
+
+      - name: Repository validation
+        run: bash tests/validate-repo.sh
+
+      - name: Lumina Core validation
+        run: python3 scripts/quality.py all
+
+      - name: Package manifest hygiene
+        run: |
+          for f in packages/*.txt; do
+            duplicates="$(awk 'NF && $1 !~ /^#/ { print }' "$f" | sort | uniq -d)"
+            if [[ -n "$duplicates" ]]; then
+              printf 'Duplicate package(s) in %s:\n%s\n' "$f" "$duplicates"
+              exit 1
+            fi
+          done

@@ -1,0 +1,7 @@
+[[windows]]
+workspace = 1
+command = "ghostty -e nvim"
+
+[[windows]]
+workspace = 2
+command = "firefox"

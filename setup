@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Compatibility wrapper for older guides that used ./setup.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+case "${1:-all}" in
+  all)
+    shift || true
+    exec bash "${ROOT}/install.sh" install "$@"
+    ;;
+  doctor)
+    shift || true
+    exec bash "${ROOT}/install.sh" doctor "$@"
+    ;;
+  stow)
+    shift || true
+    exec bash "${ROOT}/install.sh" dotfiles-only "$@"
+    ;;
+  theme)
+    shift || true
+    exec bash "${ROOT}/install.sh" theme "$@"
+    ;;
+  retry)
+    shift || true
+    phase="${1:-}"
+    shift || true
+    case "${phase}" in
+      system | 01-system) exec bash "${ROOT}/scripts/install/01-system.sh" "$@" ;;
+      packages | 02-packages) exec bash "${ROOT}/scripts/install/02-packages.sh" "$@" ;;
+      dotfiles | stow | 03-dotfiles) exec bash "${ROOT}/scripts/install/03-dotfiles.sh" "$@" ;;
+      theme | 04-theme) exec bash "${ROOT}/scripts/install/04-theme.sh" "$@" ;;
+      hardware | kernel | 05-hardware) exec bash "${ROOT}/scripts/install/05-hardware.sh" "$@" ;;
+      services | session | 06-services) exec bash "${ROOT}/scripts/install/06-services.sh" "$@" ;;
+      *)
+        echo "Unknown phase: ${phase:-<empty>}" >&2
+        echo "Known phases: system, packages, dotfiles, theme, hardware, services" >&2
+        exit 1
+        ;;
+    esac
+    ;;
+  *)
+    exec bash "${ROOT}/install.sh" "$@"
+    ;;
+esac

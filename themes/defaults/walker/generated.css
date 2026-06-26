@@ -1,0 +1,58 @@
+@define-color accent #a8c7ff;
+@define-color surface_alt #1a202b;
+@define-color surface #0e1219;
+@define-color fg #e8ecf3;
+@define-color muted #c2c7d0;
+
+window {
+    background: alpha(@surface, 0.78);
+    border-radius: 16px;
+    border: 1px solid alpha(@accent, 0.34);
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(28px);
+    color: @fg;
+    font-family: "Inter";
+    font-size: 14px;
+}
+
+entry {
+    margin: 24px 24px 12px;
+    min-height: 54px;
+    border-radius: 16px;
+    padding: 0 16px;
+    background: alpha(@surface, 0.92);
+    color: @fg;
+    border: 1px solid alpha(@accent, 0.12);
+    font-size: 14px;
+}
+
+list {
+    margin: 0 12px 12px;
+    padding: 8px;
+    background: transparent;
+}
+
+child {
+    min-height: 50px;
+    margin: 4px 0;
+    border-radius: 12px;
+    padding: 0 12px;
+    background: transparent;
+    color: @fg;
+    transition: 120ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
+}
+
+child:selected {
+    background: alpha(@accent, 0.18);
+    border: 1px solid alpha(@accent, 0.24);
+}
+
+child:focus-visible, entry:focus-visible {
+    outline: 2px solid @accent;
+    outline-offset: 4px;
+}
+
+label.sub {
+    color: @muted;
+    font-size: 12px;
+}

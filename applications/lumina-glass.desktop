@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Glass Mode
+Comment=Configure blur, opacity, and transparent surfaces
+Exec=lumina-settings-studio --page=appearance --section=glass-mode
+Icon=weather-fog-symbolic
+Categories=Settings;
+Keywords=glass;blur;opacity;transparency;frosted;

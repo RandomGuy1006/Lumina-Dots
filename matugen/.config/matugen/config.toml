@@ -1,0 +1,54 @@
+[config]
+reload_gtk_theme = true
+
+[templates.visual-tokens]
+input_path = "~/.config/matugen/templates/visual-tokens.json"
+output_path = "~/.cache/lumina/visual-tokens.json"
+
+[templates.hypr-colors]
+input_path = "~/.config/matugen/templates/hypr-colors.conf"
+output_path = "~/.config/hypr/colors.conf"
+
+[templates.hyprlock-colors]
+input_path = "~/.config/matugen/templates/hyprlock.conf"
+output_path = "~/.config/hypr/hyprlock-colors.conf"
+
+[templates.ghostty-theme]
+input_path = "~/.config/matugen/templates/ghostty-theme"
+output_path = "~/.config/ghostty/themes/LoqDynamic"
+
+[templates.btop-theme]
+input_path = "~/.config/matugen/templates/btop.theme"
+output_path = "~/.config/btop/themes/loq.theme"
+
+[templates.walker-theme]
+input_path = "~/.config/matugen/templates/walker.css"
+output_path = "~/.config/walker/themes/generated.css"
+
+[templates.gtk3-theme]
+input_path = "~/.config/matugen/templates/gtk.css.hbs"
+output_path = "~/.config/gtk-3.0/gtk.css"
+
+[templates.gtk4-theme]
+input_path = "~/.config/matugen/templates/gtk.css.hbs"
+output_path = "~/.config/gtk-4.0/gtk.css"
+
+[templates.hyprpanel-theme]
+input_path = "~/.config/matugen/templates/hyprpanel-theme.json"
+output_path = "~/.config/hyprpanel/theme.generated.json"
+
+[templates.wlogout-theme]
+input_path = "~/.config/matugen/templates/wlogout.css"
+output_path = "~/.config/wlogout/colors.css"
+
+[templates.yazi-theme]
+input_path = "~/.config/matugen/templates/yazi-theme.toml"
+output_path = "~/.config/yazi/theme.toml"
+
+[templates.starship]
+input_path = "~/.config/matugen/templates/starship.toml"
+output_path = "~/.config/starship.toml"
+
+[templates.nvim-colors]
+input_path = "~/.config/matugen/templates/nvim-colors.lua"
+output_path = "~/.config/nvim/lua/config/matugen-colors.lua"

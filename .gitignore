@@ -1,0 +1,27 @@
+# Runtime and logs
+logs/*
+!logs/.gitkeep
+logs/install-*.log
+logs/doctor-*.log
+
+# Generated theme outputs
+themes/generated/*
+!themes/generated/.gitkeep
+hypr/.config/hypr/colors.conf
+hypr/.config/hypr/hyprlock-colors.conf
+ghostty/.config/ghostty/themes/LoqDynamic
+walker/.config/walker/themes/generated.css
+hyprpanel/.config/hyprpanel/theme.generated.json
+btop/.config/btop/themes/loq.theme
+wlogout/.config/wlogout/colors.css
+
+# Local state
+.state/
+
+# Python runtime artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# User wallpapers belong outside git history; keep themes/defaults/wallpaper.jpg tracked as install fallback.

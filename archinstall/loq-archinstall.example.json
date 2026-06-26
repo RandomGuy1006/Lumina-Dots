@@ -1,0 +1,32 @@
+{
+  "hostname": "loq",
+  "kernels": [
+    "linux",
+    "linux-lts"
+  ],
+  "bootloader": "Systemd-boot",
+  "audio": "pipewire",
+  "swap": false,
+  "network_config": {
+    "type": "nm"
+  },
+  "locale_config": {
+    "kb_layout": "us",
+    "sys_lang": "en_US"
+  },
+  "timezone": "Asia/Kolkata",
+  "packages": [
+    "git",
+    "stow",
+    "btrfs-progs",
+    "snapper",
+    "snap-pac",
+    "networkmanager"
+  ],
+  "profile_config": null,
+  "disk_config": {
+    "config_type": "manual",
+    "layout": "btrfs-subvolumes"
+  }
+}
+

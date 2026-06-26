@@ -1,0 +1,50 @@
+@define-color fg {{colors.on_surface.default.hex}};
+@define-color muted {{colors.on_surface_variant.default.hex}};
+@define-color surface {{colors.surface.default.hex}};
+@define-color surface_alt {{colors.surface_container.default.hex}};
+@define-color accent {{colors.primary.default.hex}};
+
+window {
+    background: alpha(@surface, 0.78);
+    border-radius: 16px;
+    border: 1px solid alpha(@accent, 0.34);
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(28px);
+    color: @fg;
+    font-family: "Inter";
+}
+
+entry {
+    margin: 24px 24px 12px;
+    min-height: 54px;
+    border-radius: 16px;
+    padding: 0 16px;
+    background: alpha(@surface, 0.92);
+    color: @fg;
+    border: 1px solid alpha(@accent, 0.12);
+}
+
+list {
+    margin: 0 12px 12px;
+    padding: 8px;
+    background: transparent;
+}
+
+child {
+    min-height: 50px;
+    margin: 4px 0;
+    border-radius: 12px;
+    padding: 0 12px;
+    background: transparent;
+    color: @fg;
+    transition: 120ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
+}
+
+child:selected {
+    background: alpha(@accent, 0.18);
+    border: 1px solid alpha(@accent, 0.24);
+}
+
+label.sub {
+    color: @muted;
+}

@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=dev.lumina.core
+Exec=/bin/sh -c 'exec "$HOME/.local/bin/lumina-core-service"'
+SystemdService=lumina-core.service

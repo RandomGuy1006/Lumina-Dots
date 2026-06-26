@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["colors"],
+  "properties": {
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "primary_variant": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "secondary": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "surface": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "surface_variant": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "on_surface": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "outline": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "outline_variant": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+        "error": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

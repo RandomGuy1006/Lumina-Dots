@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mood
+Comment=Choose a coordinated Lumina atmosphere
+Exec=lumina-settings-studio --page=mood
+Icon=weather-clear-symbolic
+Categories=Settings;
+Keywords=mood;vibe;atmosphere;temperature;

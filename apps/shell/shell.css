@@ -1,0 +1,60 @@
+.lumina-window {
+  background: var(--lumina-colors-surface);
+  color: var(--lumina-colors-fg);
+  border-radius: var(--lumina-radius-shell);
+  font-family: var(--lumina-typography-ui-family);
+  font-size: var(--lumina-typography-body-px);
+}
+
+.lumina-shell-status {
+  padding: var(--lumina-spacing-shell);
+  color: var(--lumina-colors-fg);
+}
+
+.lumina-badge {
+  border-radius: var(--lumina-radius-chip);
+  padding: var(--lumina-spacing-gap-inner) var(--lumina-spacing-chip);
+  background: var(--lumina-colors-surface-high);
+  color: var(--lumina-colors-fg);
+}
+
+.lumina-badge-warning {
+  color: var(--lumina-colors-warning);
+}
+
+.lumina-badge-danger {
+  color: var(--lumina-colors-danger);
+}
+
+.lumina-popup {
+  padding: var(--lumina-spacing-panel);
+  border: var(--lumina-stroke-hairline) solid var(--lumina-colors-outline);
+  border-radius: var(--lumina-radius-shell);
+  background: var(--lumina-colors-surface-high);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--lumina-colors-surface) 32%, transparent);
+}
+
+.lumina-popup-title {
+  font-size: var(--lumina-typography-title-px);
+  font-weight: 600;
+}
+
+.lumina-popup-body {
+  color: var(--lumina-colors-muted);
+  line-height: var(--lumina-typography-line-height);
+}
+
+.lumina-icon {
+  min-width: var(--lumina-icons-regular);
+  min-height: var(--lumina-icons-regular);
+  color: var(--lumina-colors-fg);
+}
+
+button, entry, row {
+  transition: var(--lumina-motion-micro-ms)ms cubic-bezier(var(--lumina-motion-curve-css));
+}
+
+button:focus-visible, entry:focus-visible, row:focus-visible {
+  outline: var(--lumina-stroke-focus) solid var(--lumina-colors-accent);
+  outline-offset: var(--lumina-spacing-gap-inner);
+}

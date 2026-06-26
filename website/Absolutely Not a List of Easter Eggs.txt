@@ -1,0 +1,164 @@
+================================================================================
+        EASTER EGGS
+        lumina-dots website · index.html live session + landing page
+        (definitely not spoilers · definitely for Arch wiki researchers)
+================================================================================
+
+Tiers: [OBVIOUS] [PREDICTABLE] [SECRET] [CRYPT]
+Each unlock shows a toast once per session (refresh resets progress).
+
+--------------------------------------------------------------------------------
+LANDING PAGE — WISDOM & NAVIGATION
+--------------------------------------------------------------------------------
+
+[OBVIOUS] Rotating Linux quotes
+  · Click the quote band on the Wisdom section (#linux-quote).
+  · Cycles 10 r/linux-style quotes.
+  · Second quote (index 1) unlocks: quote-arch
+
+[OBVIOUS] Konami code
+  · Anywhere on page (not while ⌘K palette is open):
+    ↑ ↑ ↓ ↓ ← → ← → B A
+  · Unlocks: konami · scrolls to Live Session
+
+[OBVIOUS] Command palette (⌘K / Ctrl+K)
+  · Type exactly: reddit OR r/linux → cmd-reddit
+  · Type exactly: arch OR i use arch → cmd-arch
+  · Type: unixporn OR r/unixporn → cmd-unixporn
+  · Palette item "Easter eggs" jumps to the hunt panel (not a toast egg)
+
+[PREDICTABLE] Nav ◈ mark (top-left logo diamond)
+  · Click the ◈ seven times within ~1.2s windows (4th click hints "4/7").
+  · Unlocks: nav-7
+
+[SECRET] Wisdom cards
+  · Double-click any of the 9 wisdom cards (each has unique id wisdom-0 … wisdom-8).
+
+[SECRET] Footer
+  · Triple-click anywhere on the site footer within ~0.7s → footer-triple
+
+[CRYPT] Footer copyright line
+  · Shift+click: "© 2026 · lumina-dots v1.0 …" → footer-shift
+
+[SECRET] Wisdom section label
+  · Shift+click the "◈ Linux Culture" section label → wisdom-shift
+
+[CRYPT] Hero scroll chevron
+  · Triple-click the ⌄ below the hero within ~0.6s → scroll-chev
+
+[CRYPT] Hero title
+  · Alt+click the "lumina-dots" gradient title → hero-alt
+
+[CRYPT] Type anywhere (not in input fields, ⌘K closed)
+  · Type: lumina → type-lumina
+  · Type: tux → type-tux
+  · Type: rice → type-rice
+
+[CRYPT] Browser console
+  · Open DevTools console, run: luminaEgg()
+  · (HTML comment hints this exists.)
+
+--------------------------------------------------------------------------------
+LIVE SESSION — BOOT & LOGIN
+--------------------------------------------------------------------------------
+
+[PREDICTABLE] Boot Arch logo
+  · During boot animation, click the Arch SVG logo 5× within ~1.4s (3× shows hint).
+  · Unlocks: arch-logo
+
+[CRYPT] Boot screen typing
+  · While boot log is visible (before desktop), type (not in a field):
+    ok → boot-ok
+    hyprland → boot-hypr
+
+[PREDICTABLE] Hyprlock login
+  · Password: arch OR btw → login-arch
+  · Password: narwhal OR bacon → login-narwhal
+  · Password: fellow kids OR fellowkids → login-fellow
+  · (Any other non-empty password still logs in — no egg.)
+
+--------------------------------------------------------------------------------
+LIVE SESSION — GHOSTTY TERMINAL
+--------------------------------------------------------------------------------
+Open Live Session → log in → Ghostty window → type commands at $ prompt.
+
+[OBVIOUS] help
+  · Lists demo commands and egg hints.
+
+[OBVIOUS] btw | i use arch | i use arch btw → term-btw
+
+[OBVIOUS] reddit | r/linux → term-reddit
+
+[OBVIOUS] cowsay → term-cowsay
+
+[OBVIOUS] arch | pacman → term-arch
+
+[SECRET] sudo rm -rf / | sudo rm -rf /* → term-rmrf
+
+[SECRET] windows | winver → term-windows
+
+[SECRET] manjaro | manjaro btw → term-manjaro
+
+[SECRET] unpopular opinion | unpopular → term-unpopular
+
+[SECRET] just use linux | just use arch → term-justlinux
+
+[SECRET] sudo make me a sandwich → term-sandwich
+
+[SECRET] downvoted for truth | source: trust me bro → term-meta
+
+[SECRET] year of linux desktop → term-yold
+
+[SECRET] fellow kids | how do you do fellow kids → term-fellow
+
+[UTILITY — no toast egg]
+  · clear, fastfetch, neofetch, btop, pacman -Syu, hyprctl monitors, ls, ls -la
+  · doctor, hyprland, hyprctl, vim, vi (opens Neovim), yazi (opens Yazi)
+
+--------------------------------------------------------------------------------
+LIVE SESSION — WALKER LAUNCHER (Super+Space or bar search icon)
+--------------------------------------------------------------------------------
+
+[SECRET] Search box
+  · rice | unixporn → walker-rice
+  · windows | win11 → walker-win
+  · reddit | r/linux → walker-reddit
+  · the narwhal bacons at midnight | narwhal → walker-narwhal
+
+[UTILITY]
+  · Apps tab: launch Ghostty, Neovim, Yazi, Monitor, Settings
+  · Clipboard / Calculator tabs: stub messages (not unlock eggs)
+
+--------------------------------------------------------------------------------
+LIVE SESSION — DESKTOP RIGHT-CLICK MENU
+--------------------------------------------------------------------------------
+
+[SECRET]
+  · Right-click desktop → About lumina-dots → ctx-about
+  · Right-click desktop → Change Wallpaper → ctx-wall
+
+--------------------------------------------------------------------------------
+FULL UNLOCK ID CHECKLIST (47 unique toasts)
+--------------------------------------------------------------------------------
+  quote-arch, konami, cmd-reddit, cmd-arch, cmd-unixporn,
+  login-arch, login-narwhal, login-fellow,
+  term-btw, term-reddit, term-cowsay, term-rmrf, term-windows,
+  term-manjaro, term-unpopular, term-justlinux, term-sandwich,
+  term-meta, term-yold, term-arch, term-fellow,
+  walker-rice, walker-win, walker-reddit, walker-narwhal,
+  ctx-about, ctx-wall,
+  arch-logo,
+  wisdom-0, wisdom-1, wisdom-2, wisdom-3, wisdom-4,
+  wisdom-5, wisdom-6, wisdom-7, wisdom-8,
+  footer-triple, footer-shift, nav-7, wisdom-shift, scroll-chev, hero-alt,
+  type-lumina, type-tux, type-rice, boot-ok, boot-hypr, console
+
+--------------------------------------------------------------------------------
+ON-PAGE HINT PANEL
+--------------------------------------------------------------------------------
+  Scroll to: Wisdom → "Easter Egg Hunt" (#easter-hunt)
+  (The ??? tier deliberately lists no crypt hints.)
+
+================================================================================
+End of absolutely-not-a-list. btw i use arch.
+================================================================================

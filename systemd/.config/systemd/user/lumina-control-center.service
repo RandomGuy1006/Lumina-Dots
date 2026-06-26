@@ -1,0 +1,11 @@
+[Unit]
+Description=Pre-rendered Lumina Control Center
+After=graphical-session-pre.target lumina-core.service
+PartOf=loq-session.target
+
+[Service]
+ExecStart=%h/.local/bin/lumina-control-center --daemon
+Restart=on-failure
+
+[Install]
+WantedBy=loq-session.target

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["mood", "auto_detect", "auto_sound", "auto_glass", "auto_clock", "color_temperature"],
+  "properties": {
+    "mood": {"enum": ["cyberpunk", "nature", "ocean", "dark", "warm", "minimal", "space", "retro"]},
+    "auto_detect": {"type": "boolean"},
+    "auto_sound": {"type": "boolean"},
+    "auto_glass": {"type": "boolean"},
+    "auto_clock": {"type": "boolean"},
+    "color_temperature": {"type": "integer", "minimum": 2700, "maximum": 6500},
+    "reduced_motion": {"type": "boolean"},
+    "profile": {
+      "type": "object",
+      "required": ["emoji", "display_name", "glass_mode", "sound_pack", "color_temperature", "clock_style", "motion_speed", "wallpaper_hint"],
+      "properties": {
+        "emoji": {"type": "string", "minLength": 1},
+        "display_name": {"type": "string", "minLength": 1},
+        "glass_mode": {"enum": ["crystal", "frosted", "mica", "material", "minimal"]},
+        "sound_pack": {"type": ["string", "null"]},
+        "color_temperature": {"type": "integer", "minimum": 2700, "maximum": 6500},
+        "clock_style": {"enum": ["cyber", "minimal", "android", "terminal", "material", "windows"]},
+        "motion_speed": {"type": "number", "minimum": 0.1, "maximum": 3.0},
+        "wallpaper_hint": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

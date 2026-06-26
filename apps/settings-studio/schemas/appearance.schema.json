@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["icon_theme", "cursor_theme", "font", "lock_screen"],
+  "properties": {
+    "icon_theme": {"type": "string", "minLength": 1},
+    "cursor_theme": {"type": "string", "minLength": 1},
+    "font": {"type": "string", "minLength": 1},
+    "lock_screen": {
+      "type": "object",
+      "required": ["clock_style", "auto_set_from_mood", "show_battery", "show_date", "blur_strength"],
+      "properties": {
+        "clock_style": {"enum": ["cyber", "minimal", "android", "terminal", "material", "windows"]},
+        "auto_set_from_mood": {"type": "boolean"},
+        "show_battery": {"type": "boolean"},
+        "show_date": {"type": "boolean"},
+        "blur_strength": {"type": "integer", "minimum": 0, "maximum": 10}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

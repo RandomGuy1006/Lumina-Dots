@@ -1,0 +1,7 @@
+[Unit]
+Description=Rotate the Lumina wallpaper when its configured interval elapses
+After=loq-swww.service lumina-core.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash %h/.local/share/lumina/scripts/wallpaper-rotate.sh

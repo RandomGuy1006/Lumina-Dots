@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, sys
+from pathlib import Path
+for p in (Path(__file__).resolve().parents[3] / "apps/lib", Path.home() / ".local/share/lumina/lib"):
+    if p.exists(): sys.path.insert(0, str(p))
+from lumina_core.toasts import ICON_MAP, toast
+p=argparse.ArgumentParser(prog="lumina-toast"); p.add_argument("message"); p.add_argument("subtitle", nargs="?", default=""); p.add_argument("category", nargs="?", choices=ICON_MAP, default="info"); a=p.parse_args(); toast(a.message, a.subtitle, a.category)

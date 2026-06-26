@@ -1,0 +1,9 @@
+{
+  "theme.bar.border_radius": "16px",
+  "theme.notification.border_radius": "16px",
+  "theme.notification.border_size": "1px",
+  "theme.notification.margin_top": "12px",
+  "theme.notification.margin_right": "12px",
+  "theme.notification.padding": "16px",
+  "menus.transitionTime": 240
+}

@@ -1,0 +1,95 @@
+# modules/yazi/theme.toml
+# Yazi visual theme — Catppuccin Macchiato (matches lumina-dots palette)
+
+[manager]
+cwd         = { fg = "#8aadf4" }
+hovered     = { fg = "#cad3f5", bg = "#363a4f", bold = true }
+preview_hovered = { underline = true }
+find_keyword  = { fg = "#eed49f", italic = true }
+find_position = { fg = "#f5bde6", bg = "reset", italic = true }
+marker_copied = { fg = "#a6da95", bg = "#a6da95" }
+marker_cut    = { fg = "#ed8796", bg = "#ed8796" }
+marker_selected = { fg = "#8aadf4", bg = "#8aadf4" }
+tab_active    = { fg = "#cad3f5", bg = "#363a4f" }
+tab_inactive  = { fg = "#8087a2", bg = "#24273a" }
+tab_width     = 1
+count_copied  = { fg = "#24273a", bg = "#a6da95" }
+count_cut     = { fg = "#24273a", bg = "#ed8796" }
+count_selected = { fg = "#24273a", bg = "#8aadf4" }
+border_symbol = "│"
+border_style  = { fg = "#494d64" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#363a4f", bg = "#363a4f" }
+mode_normal = { fg = "#24273a", bg = "#8aadf4", bold = true }
+mode_select = { fg = "#24273a", bg = "#a6da95", bold = true }
+mode_unset  = { fg = "#24273a", bg = "#f5bde6", bold = true }
+progress_label  = { fg = "#ffffff", bold = true }
+progress_normal = { fg = "#8aadf4", bg = "#363a4f" }
+progress_error  = { fg = "#ed8796", bg = "#363a4f" }
+perm_type  = { fg = "#8aadf4" }
+perm_read  = { fg = "#eed49f" }
+perm_write = { fg = "#ed8796" }
+perm_exec  = { fg = "#a6da95" }
+perm_sep   = { fg = "#494d64" }
+
+[input]
+border   = { fg = "#8aadf4" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[select]
+border   = { fg = "#8aadf4" }
+active   = { fg = "#f5bde6" }
+inactive = {}
+
+[tasks]
+border  = { fg = "#8aadf4" }
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "#1e2030" }
+cand            = { fg = "#7dc4e4" }
+rest            = { fg = "#8087a2" }
+desc            = { fg = "#f5bde6" }
+separator       = "  "
+separator_style = { fg = "#494d64" }
+
+[help]
+on      = { fg = "#f5bde6" }
+exec    = { fg = "#7dc4e4" }
+desc    = { fg = "#8087a2" }
+hovered = { bg = "#363a4f", bold = true }
+footer  = { fg = "#24273a", bg = "#8aadf4" }
+
+[filetype]
+rules = [
+  { mime = "image/*",  fg = "#f5bde6" },
+  { mime = "video/*",  fg = "#eed49f" },
+  { mime = "audio/*",  fg = "#eed49f" },
+  { mime = "application/zip",    fg = "#f5a97f" },
+  { mime = "application/x-tar", fg = "#f5a97f" },
+  { mime = "application/x-bzip*", fg = "#f5a97f" },
+  { mime = "application/x-7z-compressed", fg = "#f5a97f" },
+  { mime = "application/x-rar",  fg = "#f5a97f" },
+  { mime = "text/*",   fg = "#a6da95" },
+  { name = "*.sh",     fg = "#a6da95" },
+  { name = "*.bash",   fg = "#a6da95" },
+  { name = "*.zsh",    fg = "#a6da95" },
+  { name = "*.lua",    fg = "#7dc4e4" },
+  { name = "*.py",     fg = "#eed49f" },
+  { name = "*.rs",     fg = "#f5a97f" },
+  { name = "*.go",     fg = "#7dc4e4" },
+  { name = "*.ts",     fg = "#8aadf4" },
+  { name = "*.js",     fg = "#eed49f" },
+  { name = "*.md",     fg = "#cad3f5" },
+  { name = "*.json",   fg = "#eed49f" },
+  { name = "*.toml",   fg = "#a6da95" },
+  { name = "*.yaml",   fg = "#a6da95" },
+  { name = "*.yml",    fg = "#a6da95" },
+  { name = "*",        fg = "#cad3f5" },
+]

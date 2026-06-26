@@ -1,0 +1,6 @@
+# LOQ-specific runtime helpers
+acpi
+acpid
+dmidecode
+fwupd
+xdg-user-dirs

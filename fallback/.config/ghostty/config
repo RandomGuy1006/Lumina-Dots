@@ -1,0 +1,5 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+gtk-titlebar = false
+confirm-close-surface = false
+

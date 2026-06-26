@@ -1,0 +1,11 @@
+[Unit]
+Description=Pre-rendered Lumina Keybind Overlay
+After=graphical-session-pre.target lumina-core.service
+PartOf=loq-session.target
+
+[Service]
+ExecStart=%h/.local/bin/lumina-keybind-overlay --daemon
+Restart=on-failure
+
+[Install]
+WantedBy=loq-session.target

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Lumina Mission Control
+Comment=Workspace and window overview
+Exec=lumina-mission-control
+Icon=view-grid-symbolic
+Categories=System;
+Keywords=mission;overview;workspace;window;

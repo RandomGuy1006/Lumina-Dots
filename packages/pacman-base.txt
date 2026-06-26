@@ -1,0 +1,23 @@
+# Core system and tooling
+base-devel
+git
+jq
+rsync
+curl
+wget
+unzip
+zip
+tree
+fd
+ripgrep
+pacman-contrib
+zsh
+starship
+neovim
+btop
+fastfetch
+linux
+linux-lts
+linux-firmware
+intel-ucode
+sof-firmware

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lumina.local/schemas/lumina-shell-envelope.schema.json",
+  "title": "Lumina Shell Contract Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "timestamp", "data"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "kind": {"type": "string", "pattern": "^shell\\.[a-z0-9.-]+$"},
+    "timestamp": {"type": "number", "minimum": 0},
+    "data": {}
+  }
+}

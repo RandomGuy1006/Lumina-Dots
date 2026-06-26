@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["mode", "blur_size", "blur_passes", "opacity", "saturation", "tint_color", "noise", "brightness", "performance_mode", "battery_mode"],
+  "properties": {
+    "mode": {"enum": ["crystal", "frosted", "mica", "material", "minimal"]},
+    "blur_size": {"type": "integer", "minimum": 0, "maximum": 40},
+    "blur_passes": {"type": "integer", "minimum": 0, "maximum": 5},
+    "opacity": {"type": "number", "minimum": 0, "maximum": 1},
+    "saturation": {"type": "number", "minimum": 0.8, "maximum": 2},
+    "tint_color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "noise": {"type": "number", "minimum": 0, "maximum": 0.08},
+    "brightness": {"type": "number", "minimum": 0.7, "maximum": 1.2},
+    "performance_mode": {"type": "boolean"},
+    "battery_mode": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Lumina Keybind Overlay
+Comment=Search all keyboard shortcuts
+Exec=lumina-keybind-overlay
+Icon=input-keyboard-symbolic
+Categories=Utility;
+Keywords=keybind;shortcut;keyboard;help;

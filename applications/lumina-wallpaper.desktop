@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wallpaper
+Comment=Change wallpaper, rotation, and transitions
+Exec=lumina-settings-studio --page=wallpaper
+Icon=preferences-desktop-wallpaper-symbolic
+Categories=Settings;
+Keywords=wallpaper;background;rotate;transition;

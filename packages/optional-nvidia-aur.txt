@@ -1,0 +1,2 @@
+# Optional AUR helpers for hybrid/offload experiments.
+supergfxctl

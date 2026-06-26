@@ -1,0 +1,27 @@
+app_launch_prefix = "uwsm app --"
+terminal_title_flag = "-e"
+theme = "loq"
+close_when_open = true
+force_keyboard_focus = true
+hotreload_theme = true
+
+[builtins.applications]
+weight = 5
+show_sub_when_single = true
+
+[builtins.runner]
+weight = 4
+eager_loading = true
+
+[builtins.files]
+weight = 3
+name = "Files"
+
+[builtins.websearch]
+weight = 2
+name = "Search"
+
+[builtins.clipboard]
+weight = 1
+max_entries = 25
+

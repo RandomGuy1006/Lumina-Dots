@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, os, sys
+from pathlib import Path
+for p in (Path(__file__).resolve().parents[3] / "apps/lib", Path.home() / ".local/share/lumina/lib"):
+    if p.exists(): sys.path.insert(0, str(p))
+from lumina_core.glass import GlassMode, apply_glass_layerrules, load_glass_config, set_glass_mode
+from lumina_core.toasts import toast
+
+p = argparse.ArgumentParser(prog="lumina-glass")
+s = p.add_subparsers(dest="command", required=True)
+set_p = s.add_parser("set"); set_p.add_argument("mode", choices=[m.value for m in GlassMode]); set_p.add_argument("--battery", action="store_true")
+s.add_parser("status"); s.add_parser("reload")
+a = p.parse_args()
+if a.command == "status": print(load_glass_config().mode.value)
+elif a.command == "reload": apply_glass_layerrules(load_glass_config())
+else:
+    set_glass_mode(GlassMode(a.mode), battery_override=True if a.battery else None); toast(f"Glass: {a.mode} applied")

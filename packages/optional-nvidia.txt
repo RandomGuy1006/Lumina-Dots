@@ -1,0 +1,8 @@
+# Optional hybrid/offload package set.
+# Not installed by default because the stable LOQ path in this repo is Intel-first.
+nvidia-open-dkms
+nvidia-utils
+nvidia-settings
+lib32-nvidia-utils
+linux-headers
+linux-lts-headers

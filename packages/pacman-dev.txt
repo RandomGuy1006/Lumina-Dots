@@ -1,0 +1,12 @@
+# Quality-of-life developer tools
+shellcheck
+shfmt
+fzf
+bat
+lazygit
+openssh
+ufw
+socat
+ollama
+lua-language-server
+stylua

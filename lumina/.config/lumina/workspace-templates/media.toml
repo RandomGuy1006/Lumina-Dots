@@ -1,0 +1,7 @@
+[[windows]]
+workspace = 3
+command = "firefox"
+
+[[windows]]
+workspace = 4
+command = "ghostty -e btop"

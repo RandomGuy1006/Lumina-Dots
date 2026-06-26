@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR="$(CDPATH="" cd -- "$(dirname -- "$0")" && pwd)"
+REPO_APP="${SCRIPT_DIR}/../../../apps/settings-studio/lumina-settings-studio.py"
+INSTALLED_APP="${HOME}/.local/share/lumina/settings-studio/lumina-settings-studio.py"
+
+if [[ -x "$REPO_APP" || -f "$REPO_APP" ]]; then
+  exec python3 "$REPO_APP" "$@"
+fi
+
+exec "$INSTALLED_APP" "$@"

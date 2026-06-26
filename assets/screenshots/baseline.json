@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "resolution": [1024, 1024],
+  "images": {
+    "desktop.png": "6b803ed9915b3a28a8505573e0a92d7ad1d3c70a354dc3ab49663db736194898",
+    "launcher.png": "e0cc36d24b5be31e66926617e30fad1bdb9916483f91e1f46f02ed024cdc265a",
+    "lockscreen.png": "5a923c4f6cf70e09011b94aec60de5883f4baae946e954dd52dc3260d44fb596",
+    "panel.png": "cceebbff602ddd42a9601a06e0cd19ad83855da33cf33ca03017fb6c563381ca",
+    "terminal.png": "9502399318f8ee236cc047ce0e022fa9241214a2a556b7fcd705ad91769d5588"
+  }
+}

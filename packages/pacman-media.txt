@@ -1,0 +1,12 @@
+# Workflow and capture
+grim
+slurp
+satty
+wl-clipboard
+cliphist
+wayland-utils
+libnotify
+awww
+pavucontrol
+tesseract
+tesseract-data-eng

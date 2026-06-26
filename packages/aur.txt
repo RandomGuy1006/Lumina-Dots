@@ -1,0 +1,12 @@
+# AUR components for this desktop
+ags-hyprpanel-git
+auto-cpufreq
+bibata-cursor-theme
+envycontrol
+grimblast-git
+hyprswitch
+matugen-bin
+powerstat
+walker-bin
+waypaper
+wlogout

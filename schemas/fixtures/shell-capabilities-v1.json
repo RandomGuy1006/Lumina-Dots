@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "kind": "shell.capabilities",
+  "timestamp": 0,
+  "data": {
+    "queries": ["status", "modes", "capabilities", "snapshot", "tokens"],
+    "commands": ["mode", "osd", "popup"],
+    "events": ["hyprland", "mode", "osd", "popup"],
+    "production_frontends": ["gtk", "hyprpanel"],
+    "experimental_frontends": []
+  }
+}

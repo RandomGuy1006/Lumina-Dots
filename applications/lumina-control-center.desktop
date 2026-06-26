@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Lumina Control Center
+Comment=Quick system, glass, and mood controls
+Exec=lumina-control-center
+Icon=org.gnome.Settings-symbolic
+Categories=System;
+Keywords=control;volume;brightness;glass;mood;

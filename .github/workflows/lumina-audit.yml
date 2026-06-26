@@ -1,0 +1,173 @@
+name: Lumina Audit
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  shell-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Bash syntax
+        run: |
+          set -eu
+          find . -type f \( -name '*.sh' -o -name 'setup' -o -name 'install.sh' -o -name 'update.sh' \) \
+            -not -path './.git/*' -not -path './logs/*' -print0 |
+            xargs -0 -n1 bash -n
+          printf 'PASS bash syntax\n'
+      - name: ShellCheck
+        run: |
+          set -eu
+          find . -name '*.sh' -not -path './.git/*' -not -path './logs/*' -print0 |
+            xargs -0 shellcheck -S warning
+          printf 'PASS shellcheck\n'
+      - name: Strict mode
+        run: |
+          set -eu
+          missing=0
+          while IFS= read -r file; do
+            if head -n 1 "$file" | grep -Eq '^#!.*(sh|bash)' &&
+               ! grep -q 'set -euo pipefail' "$file"; then
+              printf 'FAIL missing strict mode: %s\n' "$file"
+              missing=1
+            fi
+          done < <(find . -name '*.sh' -not -path './.git/*' -not -path './logs/*' -print)
+          test "$missing" -eq 0
+          printf 'PASS strict mode\n'
+
+  hyprland-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hyprland syntax guardrails
+        run: |
+          set -eu
+          if grep -R -n 'col\.shadow[[:space:]]*=' hypr/; then exit 1; fi
+          if grep -R -n 'new_optimizations' hypr/; then exit 1; fi
+          if grep -R -n 'dwindle.*pseudotile' hypr/; then exit 1; fi
+          if grep -R -n 'windowrulev2[[:space:]]*=' hypr/.config/hypr/; then exit 1; fi
+          if awk '/^[[:space:]]*windowrule[[:space:]]*=/ && $0 !~ /match:/' hypr/.config/hypr/rules.conf | grep -q .; then exit 1; fi
+          if grep -E -n '(^|,)[[:space:]]*(class|title|fullscreen):' hypr/.config/hypr/rules.conf; then exit 1; fi
+          grep -q '\-o login' shell/.zprofile
+          if grep -q 'may-start' shell/.zprofile; then exit 1; fi
+          if grep -q '\-o interactive' shell/.zprofile; then exit 1; fi
+          grep -q 'RemainAfterExit=yes' systemd/.config/systemd/user/loq-hyprlock-boot.service
+          if grep -R -n 'snapper[[:space:]].*rollback' scripts/rollback.sh; then exit 1; fi
+          printf 'PASS hyprland guardrails\n'
+      - name: Systemd service sections
+        run: |
+          set -eu
+          failed=0
+          for svc in systemd/.config/systemd/user/*.service; do
+            grep -q '\[Service\]' "$svc" || { printf 'FAIL missing [Service]: %s\n' "$svc"; failed=1; }
+            if [ "$(basename "$svc")" != "loq-hyprlock-boot.service" ]; then
+              grep -q '\[Install\]' "$svc" || { printf 'FAIL missing [Install]: %s\n' "$svc"; failed=1; }
+            fi
+          done
+          test "$failed" -eq 0
+          printf 'PASS systemd sections\n'
+
+  matugen-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Template references
+        run: |
+          set -eu
+          config='matugen/.config/matugen/config.toml'
+          dir='matugen/.config/matugen/templates'
+          refs="$(grep -oE 'templates/[A-Za-z0-9._-]+' "$config" | sed 's#templates/##' | sort -u)"
+          failed=0
+          for ref in $refs; do
+            [ -f "$dir/$ref" ] || { printf 'FAIL missing template: %s\n' "$ref"; failed=1; }
+          done
+          for file in "$dir"/*; do
+            name="$(basename "$file")"
+            printf '%s\n' "$refs" | grep -qx "$name" || printf 'WARN orphan template: %s\n' "$name"
+          done
+          test "$failed" -eq 0
+          printf 'PASS matugen references\n'
+
+  path-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Path and command hygiene
+        run: |
+          set -eu
+          # shellcheck disable=SC2016
+          if grep -R -n '/home/' scripts/ lib/ local-bin/ --include='*.sh' |
+            grep -v '^[[:space:]]*#' |
+            grep -v '\$HOME' |
+            grep -v '\$USER'; then exit 1; fi
+          if grep -R -n -E '\bping([[:space:]]|-c)' scripts/ lib/ --include='*.sh' |
+            grep -v '^[[:space:]]*#'; then exit 1; fi
+          if find hypr/.config/hypr \( -name colors.conf -o -name hyprlock-colors.conf \) | grep -q .; then exit 1; fi
+          printf 'PASS path hygiene\n'
+      - name: Direct symlink sources
+        run: |
+          set -eu
+          failed=0
+          while IFS= read -r src; do
+            [ -e "$src" ] || { printf 'FAIL missing symlink source: %s\n' "$src"; failed=1; }
+          done < <(
+            awk '/link::direct_entries\(\)/,/^}/' lib/link.sh |
+              sed -n 's/^[[:space:]]*\([^|$][^|]*\)|.*/\1/p'
+          )
+          test "$failed" -eq 0
+          printf 'PASS direct symlink sources\n'
+
+  doctor-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Doctor and update checks
+        run: |
+          set -eu
+          if grep -A4 'linux-lts' scripts/doctor.sh | grep -q 'fail\b'; then exit 1; fi
+          grep -q -- '--porcelain' scripts/doctor.sh
+          grep 'doctor.sh' update.sh | grep -Eq '\|\| true|\|\|:'
+          for svc in systemd/.config/systemd/user/*.service; do
+            grep -q '\[Service\]' "$svc"
+            if [ "$(basename "$svc")" != "loq-hyprlock-boot.service" ]; then
+              grep -q '\[Install\]' "$svc"
+            fi
+          done
+          printf 'PASS doctor integrity\n'
+
+  summary:
+    if: always() && github.event_name == 'pull_request'
+    needs:
+      - shell-syntax
+      - hyprland-config
+      - matugen-integrity
+      - path-integrity
+      - doctor-integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const jobs = {
+              "shell-syntax": "${{ needs.shell-syntax.result }}",
+              "hyprland-config": "${{ needs.hyprland-config.result }}",
+              "matugen-integrity": "${{ needs.matugen-integrity.result }}",
+              "path-integrity": "${{ needs.path-integrity.result }}",
+              "doctor-integrity": "${{ needs.doctor-integrity.result }}"
+            };
+            const table = Object.entries(jobs)
+              .map(([job, result]) => `| ${job} | ${result} |`)
+              .join("\n");
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## Lumina Audit Summary\n\n| Job | Result |\n|---|---|\n${table}`
+            });

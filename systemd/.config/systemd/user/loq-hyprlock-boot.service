@@ -1,0 +1,8 @@
+[Unit]
+Description=Lock immediately after session start
+After=loq-swww.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sh -lc 'i=0; while command -v swww >/dev/null 2>&1 && [ "$i" -lt 50 ]; do swww query >/dev/null 2>&1 && break; sleep 0.1; i=$((i + 1)); done; exec /usr/bin/hyprlock'

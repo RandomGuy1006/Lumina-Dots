@@ -1,0 +1,13 @@
+[Unit]
+Description=Lumina Welcome
+After=lumina-shell.service
+PartOf=loq-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/lumina-welcome
+Restart=no
+
+[Install]
+WantedBy=loq-session.target
+

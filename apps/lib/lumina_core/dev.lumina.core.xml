@@ -1,0 +1,13 @@
+<node>
+  <interface name="dev.lumina.core">
+    <method name="EmitSettingsChanged"><arg name="key" type="s" direction="in"/><arg name="value" type="v" direction="in"/></method>
+    <property name="CurrentMood" type="s" access="read"/><property name="CurrentGlass" type="s" access="read"/>
+    <property name="CurrentWallpaper" type="s" access="read"/><property name="BatteryPercent" type="i" access="read"/><property name="OnBattery" type="b" access="read"/>
+  </interface>
+  <interface name="dev.lumina.settings"><signal name="Changed"><arg name="key" type="s"/><arg name="value" type="v"/></signal></interface>
+  <interface name="dev.lumina.mood"><method name="Apply"><arg name="mood" type="s" direction="in"/></method><signal name="Changed"><arg name="mood" type="s"/></signal></interface>
+  <interface name="dev.lumina.glass"><method name="Set"><arg name="mode" type="s" direction="in"/></method><signal name="Changed"><arg name="mode" type="s"/></signal></interface>
+  <interface name="dev.lumina.search"><method name="Query"><arg name="query" type="s" direction="in"/><arg name="results" type="a(sssss)" direction="out"/></method></interface>
+  <interface name="dev.lumina.toast"><method name="Send"><arg name="message" type="s" direction="in"/><arg name="subtitle" type="s" direction="in"/><arg name="category" type="s" direction="in"/></method><signal name="Toast"><arg name="message" type="s"/><arg name="category" type="s"/></signal></interface>
+  <interface name="dev.lumina.wallpaper"><signal name="Changed"><arg name="path" type="s"/></signal></interface>
+</node>

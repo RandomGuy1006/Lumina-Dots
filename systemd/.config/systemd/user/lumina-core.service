@@ -1,0 +1,13 @@
+[Unit]
+Description=Lumina platform D-Bus service
+After=graphical-session-pre.target
+PartOf=loq-session.target
+
+[Service]
+Type=dbus
+BusName=dev.lumina.core
+ExecStart=%h/.local/bin/lumina-core-service
+Restart=on-failure
+
+[Install]
+WantedBy=loq-session.target

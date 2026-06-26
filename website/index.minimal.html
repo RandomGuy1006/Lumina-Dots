@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="lumina-dots — Spring-physics Hyprland dotfiles for Arch Linux. Material You theming, NVIDIA graphics tuning, Btrfs snapshots. One command setup for Lenovo LOQ 15IRX9.">
+  <meta property="og:title" content="lumina-dots — Hyprland Dotfiles">
+  <meta property="og:description" content="Spring-physics animations. Material You theming. NVIDIA graphics tuning. One command.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/RandomGuy1006/lumina-dots">
+  <meta name="theme-color" content="#00f5ff">
+  <title>lumina-dots — Hyprland Dotfiles</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26' fill='%2300f5ff'%3E%E2%97%88%3C/text%3E%3C/svg%3E">
+  <style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1c23;
+  --text: #e4e6ed;
+  --text-muted: #8b8fa3;
+  --accent: #57a6ff;
+  --border: #2a2d37;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'JetBrains Mono', monospace;
+  --nav-h: 56px;
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+html { scrollbar-color: var(--border) transparent; scrollbar-width: thin; }
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+body { font-family: var(--font-sans); line-height: 1.6; background: var(--bg); color: var(--text); }
+a { color: var(--accent); }
+pre, code, kbd { font-family: var(--font-mono); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 700;
+  height: var(--nav-h); display: flex; align-items: center;
+  padding: 0 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.nav-brand { display: flex; align-items: center; gap: 6px; font-size: .95rem; font-weight: 700; text-decoration: none; color: var(--text); }
+.nav-mark { color: var(--accent); font-weight: 900; text-shadow: 0 0 16px rgba(87,166,255,.4); }
+.grad-text { background: linear-gradient(135deg,#00f5ff,#bf00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: .82rem; font-weight: 500; padding: 16px 8px; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: var(--text); border-bottom-color: var(--accent); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-pill {
+  display: inline-flex; align-items: center; height: 34px; border-radius: 6px;
+  padding: 0 14px; border: 1px solid var(--border); background: var(--surface);
+  font-weight: 600; font-size: .82rem; color: var(--text); text-decoration: none;
+}
+.nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero { padding: calc(var(--nav-h) + 48px) 18px 48px; text-align: center; }
+.hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; line-height: 1.15; }
+.hero-badge {
+  display: inline-block; border: 1px solid var(--border); color: var(--accent); background: var(--surface);
+  padding: 4px 12px; border-radius: 6px; font: 600 .75rem var(--font-mono); margin-bottom: 16px;
+}
+.tagline { font-size: clamp(.95rem, 1.5vw, 1.15rem); margin: 16px auto 8px; max-width: 640px; color: var(--text-muted); }
+.subline { color: var(--text-muted); font: 500 .82rem var(--font-mono); word-break: break-all; }
+.hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px;
+  padding: 0 20px; border-radius: 6px; text-decoration: none;
+  border: 1px solid var(--border); font-weight: 600; font-size: .9rem;
+}
+.btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.btn.secondary { color: var(--text); background: var(--surface); }
+.btn:hover { opacity: .85; }
+.install-card { text-align: left; max-width: 960px; margin: 0 auto; border: 1px solid var(--border); border-radius: 8px; }
+.code-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
+  color: var(--text-muted); font: 600 .75rem var(--font-mono);
+}
+.code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+.code-block pre { padding: 14px 18px; color: var(--text); font-size: .85rem; line-height: 1.6; white-space: pre-wrap; word-break: break-all; overflow: hidden; }
+.cmd-comment { color: var(--text-muted); font-style: italic; }
+.cmd-prompt { color: var(--text-muted); }
+.cmd-path { color: var(--accent); }
+.cmd-name { font-weight: 600; }
+.cmd-string { color: var(--accent); }
+.copy-btn {
+  border: 1px solid var(--border); color: var(--text-muted); border-radius: 4px;
+  padding: 4px 10px; font: 600 .72rem var(--font-mono); background: var(--surface);
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.section { max-width: 960px; margin: 0 auto; padding: 56px 16px; scroll-margin-top: 72px; }
+.section-label { color: var(--accent); font: 600 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 700; }
+.section-desc { color: var(--text-muted); margin-top: 8px; max-width: 640px; }
+
+.stats-band {
+  max-width: 960px; margin: 0 auto; padding: 28px 16px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.stats-grid { display: flex; gap: 24px; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-num { font-weight: 700; font-size: 1rem; }
+.stat-label { color: var(--text-muted); font-size: .78rem; }
+.badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--text-muted); font-size: .82rem; }
+.badge-pill {
+  display: inline-block; border: 1px solid var(--border); color: var(--text-muted);
+  background: var(--surface); padding: 2px 10px; border-radius: 4px; font-size: .78rem;
+}
+
+.feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
+.feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.feature-card h3 { font-size: .95rem; margin-bottom: 4px; }
+.feature-card p { color: var(--text-muted); font-size: .85rem; }
+
+.stack-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; margin-top: 24px; }
+.stack-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.stack-name { font-weight: 600; font-size: .9rem; }
+.stack-desc { color: var(--text-muted); font-size: .82rem; margin-top: 4px; }
+
+.install-accordions { display: grid; gap: 10px; margin-top: 24px; }
+.accordion { border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.accordion summary { padding: 14px 18px; font-weight: 600; cursor: pointer; }
+.accordion[open] summary { border-bottom: 1px solid var(--border); }
+.steps { padding: 14px 18px; display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 32px 1fr; gap: 10px; }
+.step-pill { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 6px; background: var(--accent); color: white; font-weight: 700; font-size: .8rem; }
+.step h4 { margin: 1px 0 3px; font-size: .9rem; }
+.step p { color: var(--text-muted); font-size: .83rem; }
+.callout { padding: 12px 16px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); margin-top: 12px; font-size: .85rem; }
+
+.kb-table-wrap { border: 1px solid var(--border); border-radius: 8px; overflow: auto; margin-top: 16px; max-height: 600px; overflow-y: auto; }
+.kb-table-wrap table { min-width: auto; }
+.kb-table-wrap th { position: sticky; top: 0; z-index: 1; }
+kbd { display: inline-block; border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; background: var(--surface); font-size: .75rem; }
+.cat-pill { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: .72rem; font-weight: 600; }
+.cat-System { background: rgba(87,166,255,.15); color: #57a6ff; }
+.cat-Apps { background: rgba(163,190,140,.15); color: #a3be8c; }
+.cat-Windows { background: rgba(180,142,173,.15); color: #b48ead; }
+.cat-Workspaces { background: rgba(136,192,208,.15); color: #88c0d0; }
+.cat-Media { background: rgba(208,135,112,.15); color: #d08770; }
+.cat-Special { background: rgba(235,203,139,.15); color: #ebcb8b; }
+.cat-Utilities { background: rgba(180,180,180,.15); color: #b4b4b4; }
+.cat-Tools { background: rgba(163,190,140,.15); color: #a3be8c; }
+
+.recovery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
+.recovery-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
+.recovery-card h3 { font-size: .95rem; margin-bottom: 4px; }
+.recovery-card p { color: var(--text-muted); font-size: .85rem; }
+
+footer { max-width: 960px; margin: 0 auto; padding: 28px 16px 36px; color: var(--text-muted); text-align: center; font-size: .82rem; }
+footer hr { border: none; height: 1px; background: var(--border); margin-bottom: 20px; }
+
+@media (max-width: 800px) {
+  .feature-grid { grid-template-columns: repeat(2,1fr); }
+  .stats-band { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .section { padding: 36px 12px; }
+  .hero h1 { font-size: 1.6rem; }
+  .stats-grid { flex-wrap: wrap; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main">
+  <a href="#hero" class="nav-brand" title="&#9674; lumina-dots"><span class="nav-mark">&#9674;</span><span class="grad-text">lumina-dots</span></a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#stack">Stack</a>
+    <a href="#install">Install</a>
+    <a href="#keybindings">Keybinds</a>
+    <a href="#experience">Experience</a>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-pill" href="https://github.com/RandomGuy1006/lumina-dots" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<section id="hero" class="hero">
+  <div class="hero-badge">Spring-Physics Hyprland</div>
+  <h1 class="grad-text">lumina-dots</h1>
+  <p class="tagline">Material You theming, NVIDIA tuning, Btrfs snapshots &mdash; one command.</p>
+  <p class="subline">bash &lt;(curl -fsSL https://raw.githubusercontent.com/RandomGuy1006/lumina-dots/main/scripts/install.sh)</p>
+  <div class="hero-actions">
+    <a href="https://github.com/RandomGuy1006/lumina-dots" class="btn primary" target="_blank" rel="noopener">View on GitHub</a>
+    <a href="#install" class="btn secondary">Install Guide</a>
+  </div>
+
+  <div class="install-card">
+    <div class="code-head">
+      <span>Quick Install</span>
+      <button class="copy-btn">Copy</button>
+    </div>
+    <div class="code-block">
+    <pre><span class="cmd-comment"># One-command install for Arch Linux with NVIDIA LOQ 15IRX9 support</span>
+<span class="cmd-prompt">$</span> <span class="cmd-name">bash</span> <span class="cmd-path">&lt;(curl -fsSL https://raw.githubusercontent.com/RandomGuy1006/lumina-dots/main/scripts/install.sh)</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="stats-band">
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">v6.2.0</span><span class="stat-label">Latest Release</span></div>
+    <div class="stat"><span class="stat-num">121</span><span class="stat-label">Keybindings</span></div>
+    <div class="stat"><span class="stat-num">13</span><span class="stat-label">Theme Token Files</span></div>
+  </div>
+  <div class="badges"><span>Tested on:</span><span class="badge-pill">Lenovo LOQ 15IRX9</span><span class="badge-pill">Lenovo Legion</span><span class="badge-pill">Dell XPS</span><span class="badge-pill">HP Spectre</span></div>
+</section>
+
+<section id="features" class="section">
+  <p class="section-label">Features</p>
+  <h2 class="section-title">What Makes Lumina Different</h2>
+  <p class="section-desc">A dotfiles framework built for real hardware, not just screenshots. Every feature is tested on a Lenovo LOQ 15IRX9 with dual-GPU NVIDIA.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Spring-Physics Animations</h3>
+      <p>Android/iOS-like overshoot curves give windows a natural bounce without being distracting.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Material You Theming</h3>
+      <p>Matugen generates 13 token files from your wallpaper. Every app, bar, lock screen, and terminal updates in sync.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Btrfs Snapshots</h3>
+      <p>Pre-install snapshot with rollback support. One command away from a working system.</p>
+    </div>
+    <div class="feature-card">
+      <h3>NVIDIA-Ready</h3>
+      <p>Integrated, hybrid, or NVIDIA-only mode switching via env vars. Sleep works. Games run.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Tested &amp; Validated</h3>
+      <p>CI runs static analysis, doc validation, theme rendering, and integration smoke tests on every commit.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Host Profiles</h3>
+      <p>Hardware-specific configs for LOQ 15IRX9 with a generic fallback. Add your own host in minutes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="section">
+  <p class="section-label">Stack</p>
+  <h2 class="section-title">The Toolchain</h2>
+  <p class="section-desc">Each component was chosen for stability, performance, and Wayland-first design.</p>
+  <div class="stack-grid">
+    <div class="stack-card"><p class="stack-name">Hyprland</p><p class="stack-desc">Dynamic tiling Wayland compositor with spring-physics animations and per-monitor workspaces.</p></div>
+    <div class="stack-card"><p class="stack-name">Zsh + p10k</p><p class="stack-desc">Powerlevel10k prompt with instant prompt, syntax highlighting, autosuggestions, and fzf.</p></div>
+    <div class="stack-card"><p class="stack-name">Matugen</p><p class="stack-desc">Material You color extraction from wallpaper. Generates 13 token files across the stack.</p></div>
+    <div class="stack-card"><p class="stack-name">HyprPanel</p><p class="stack-desc">GTK status bar with workspaces, volume, brightness, network, Bluetooth, and theme controls.</p></div>
+    <div class="stack-card"><p class="stack-name">Hyprlock</p><p class="stack-desc">GPU-accelerated lock screen with blurred wallpaper, clock, and password input.</p></div>
+    <div class="stack-card"><p class="stack-name">Hypridle</p><p class="stack-desc">Multi-stage idle: dim, lock, display off, suspend on battery.</p></div>
+    <div class="stack-card"><p class="stack-name">swww</p><p class="stack-desc">Animated wallpaper transitions with smooth fade effects on theme change.</p></div>
+    <div class="stack-card"><p class="stack-name">Walker</p><p class="stack-desc">GTK launcher for app search, clipboard history, calculator, and emoji picker.</p></div>
+    <div class="stack-card"><p class="stack-name">Ghostty</p><p class="stack-desc">GPU-accelerated terminal with Material You themed color scheme.</p></div>
+    <div class="stack-card"><p class="stack-name">Doctor</p><p class="stack-desc">Built-in diagnostics for services, packages, battery health, and config drift.</p></div>
+    <div class="stack-card"><p class="stack-name">uwsm</p><p class="stack-desc">Universal Wayland session manager for environment isolation and systemd integration.</p></div>
+    <div class="stack-card"><p class="stack-name">Btrfs + Snapper</p><p class="stack-desc">Automatic pre-install snapshots with manual rollback for safe experimentation.</p></div>
+  </div>
+</section>
+
+<section id="install" class="section">
+  <p class="section-label">Install</p>
+  <h2 class="section-title">Installation Guide</h2>
+  <p class="section-desc">Fresh Arch install recommended. The script handles partitioning, packages, dotfiles, and Btrfs snapshots.</p>
+  <div class="install-accordions">
+    <details class="accordion">
+      <summary>Guided Install (archinstall) — Recommended</summary>
+      <div class="steps">
+        <div class="step"><span class="step-pill">0</span><div><h4>BIOS prep</h4><p>Secure Boot off, UEFI, AHCI. USB flash:</p><div class="code-block"><pre><span class="cmd-prompt">#</span> <span class="cmd-name">dd</span> if=archlinux-*.iso of=<span class="cmd-path">/dev/sdX</span> bs=4M status=progress && sync</pre></div></div></div>
+        <div class="step"><span class="step-pill">1</span><div><h4>Wi-Fi</h4><div class="code-block"><pre><span class="cmd-name">iwctl</span>
+device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect <span class="cmd-string">"YourNetwork"</span>
+exit</pre></div></div></div>
+        <div class="step"><span class="step-pill">2</span><div><h4>Disk + Btrfs subvolumes</h4><div class="code-block"><pre><span class="cmd-name">gdisk</span> <span class="cmd-path">/dev/nvme0n1</span>
+mkfs.fat -F32 <span class="cmd-path">/dev/nvme0n1p1</span>
+mkfs.btrfs -f <span class="cmd-path">/dev/nvme0n1p2</span>
+mount <span class="cmd-path">/dev/nvme0n1p2</span> /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@var_log
+btrfs subvolume create /mnt/@var_cache_pacman
+umount /mnt
+mount -o noatime,compress=zstd:3,subvol=@ <span class="cmd-path">/dev/nvme0n1p2</span> /mnt
+mkdir -p /mnt/{boot,home,.snapshots,var/log,var/cache/pacman/pkg}
+mount -o subvol=@home <span class="cmd-path">/dev/nvme0n1p2</span> /mnt/home
+mount -o subvol=@snapshots <span class="cmd-path">/dev/nvme0n1p2</span> /mnt/.snapshots
+mount <span class="cmd-path">/dev/nvme0n1p1</span> /mnt/boot</pre></div></div></div>
+        <div class="step"><span class="step-pill">3</span><div><h4>archinstall --advanced</h4><div class="code-block"><pre><span class="cmd-comment"># profile: minimal</span>
+<span class="cmd-comment"># bootloader: systemd-boot or rEFInd</span>
+<span class="cmd-comment"># audio: pipewire</span>
+<span class="cmd-comment"># network: NetworkManager</span>
+<span class="cmd-comment"># additional packages: git sudo neovim networkmanager</span></pre></div></div></div>
+        <div class="step"><span class="step-pill">4</span><div><h4>First boot</h4><div class="code-block"><pre><span class="cmd-name">git</span> clone <span class="cmd-string">https://github.com/RandomGuy1006/lumina-dots</span> ~/lumina-dots
+cd ~/lumina-dots && bash install.sh install --host=loq-15irx9</pre></div></div></div>
+        <div class="step"><span class="step-pill">5</span><div><h4>Post-install</h4><div class="code-block"><pre>dotfiles doctor
+dotfiles theme ~/Pictures/Wallpapers/image.jpg</pre></div></div></div>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Manual Install</summary>
+      <div class="steps">
+        <div class="step"><span class="step-pill">1</span><div><h4>Base system</h4><div class="code-block"><pre>pacstrap -K /mnt base linux linux-lts linux-firmware intel-ucode \
+  sudo git zsh neovim networkmanager btrfs-progs snapper snap-pac</pre></div></div></div>
+        <div class="step"><span class="step-pill">2</span><div><h4>fstab + chroot</h4><div class="code-block"><pre>genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt</pre></div></div></div>
+        <div class="step"><span class="step-pill">3</span><div><h4>User + services</h4><div class="code-block"><pre>useradd -m -G wheel,audio,video,input,network arch
+systemctl enable NetworkManager</pre></div></div></div>
+        <div class="step"><span class="step-pill">4</span><div><h4>Clone lumina</h4><div class="code-block"><pre>git clone https://github.com/RandomGuy1006/lumina-dots /home/arch/lumina-dots
+chown -R arch:arch /home/arch/lumina-dots</pre></div></div></div>
+        <div class="step"><span class="step-pill">5</span><div><h4>Run installer</h4><div class="code-block"><pre>su - arch
+cd ~/lumina-dots
+bash install.sh install --host=loq-15irx9
+# modes: dotfiles-only / packages-only / hardware-only</pre></div></div></div>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Updates &amp; Maintenance</summary>
+      <div class="steps">
+        <div class="step"><span class="step-pill">1</span><div><h4>Full Update</h4><p>Run <code>update.sh</code> to stash local changes, pull, re-apply dotfiles, and regenerate themes.</p></div></div>
+        <div class="step"><span class="step-pill">2</span><div><h4>Doctor Dashboard</h4><p>Run <code>doctor.sh</code> to check service health, package state, and config sync.</p></div></div>
+        <div class="step"><span class="step-pill">3</span><div><h4>Rollback</h4><p>Run <code>rollback.sh</code> to list and restore from Btrfs snapshots taken before each install.</p></div></div>
+      </div>
+    </details>
+  </div>
+  <div class="callout">After first login, run: <code>dotfiles doctor</code>. All scripts support <code>--help</code> and non-graphical fallback.</div>
+</section>
+
+<section id="keybindings" class="section">
+  <p class="section-label">Shortcuts</p>
+  <h2 class="section-title">Keybindings Reference</h2>
+  <p class="section-desc">Super = Windows/CMD key. All 121 bindings defined in <code>binds.conf</code> and fully customizable.</p>
+  <div class="kb-table-wrap">
+    <table>
+      <thead><tr><th>Binding</th><th>Action</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Super</kbd> + <kbd>Return</kbd></td><td>Terminal (Ghostty)</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>E</kbd></td><td>File manager (Nautilus)</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>B</kbd></td><td>Browser (Firefox)</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Space</kbd></td><td>Launcher (Walker)</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>/</kbd></td><td>Searchable keybind overlay</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>C</kbd></td><td>Lumina Control Center</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>D</kbd></td><td>Doctor Dashboard</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>A</kbd></td><td>Lumina AI</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>L</kbd></td><td>Lumina Hub</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></td><td>Snapshot Manager</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>M</kbd></td><td>Btop</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd></td><td>Nvim</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>N</kbd></td><td>Scratch notes</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>V</kbd></td><td>Clipboard history</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Print</kbd></td><td>Screenshot</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Shift</kbd> + <kbd>Print</kbd></td><td>Screenshot</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Print</kbd></td><td>Screenshot</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>Print</kbd></td><td>Screenshot</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></td><td>Region OCR</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Q</kbd></td><td>Close active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd></td><td>Hyprctl Kill</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>T</kbd></td><td>Toggle floating</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>F</kbd></td><td>Toggle fullscreen</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>F</kbd></td><td>Toggle fullscreen</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd></td><td>Focus mode</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>P</kbd></td><td>Toggle pseudo tile</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>S</kbd></td><td>Toggle split direction</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd></td><td>Pin floating window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></td><td>Reload desktop shell</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Left</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Right</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Up</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Down</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>H</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>K</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>J</kbd></td><td>Move focus</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Left</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Right</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Up</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Down</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>Left</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>Right</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>Up</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>Down</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>K</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>J</kbd></td><td>Resize active window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>1</kbd></td><td>Workspace 1</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>2</kbd></td><td>Workspace 2</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>3</kbd></td><td>Workspace 3</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>4</kbd></td><td>Workspace 4</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>5</kbd></td><td>Workspace 5</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>6</kbd></td><td>Workspace 6</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>7</kbd></td><td>Workspace 7</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>8</kbd></td><td>Workspace 8</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>9</kbd></td><td>Workspace 9</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>0</kbd></td><td>Workspace 10</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd></td><td>Move to workspace 1</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>2</kbd></td><td>Move to workspace 2</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>3</kbd></td><td>Move to workspace 3</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td><td>Move to workspace 4</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd></td><td>Move to workspace 5</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>6</kbd></td><td>Move to workspace 6</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd></td><td>Move to workspace 7</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd></td><td>Move to workspace 8</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd></td><td>Move to workspace 9</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>0</kbd></td><td>Move to workspace 10</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Mouse_Down</kbd></td><td>Next workspace</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Mouse_Up</kbd></td><td>Previous workspace</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>]</kbd></td><td>Next workspace</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>[</kbd></td><td>Previous workspace</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Tab</kbd></td><td>Lumina Mission Control</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd></td><td>Lumina Pomodoro</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>`</kbd></td><td>Previous workspace</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>`</kbd></td><td>Scratchpad terminal</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></td><td>Toggle special workspace (scratch)</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd></td><td>Toggle special workspace (music)</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd></td><td>Toggle special workspace (notes)</td><td><span class="cat-pill cat-Workspaces">Workspaces</span></td></tr>
+        <tr><td><kbd>Alt</kbd> + <kbd>Tab</kbd></td><td>Window switcher</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd></td><td>Window switcher (reverse)</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Mouse:272</kbd></td><td>Move window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Mouse:273</kbd></td><td>Resize window</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Play</kbd></td><td>Play / Pause</td><td><span class="cat-pill cat-Media">Media</span></td></tr>
+        <tr><td><kbd>Stop</kbd></td><td>Stop</td><td><span class="cat-pill cat-Media">Media</span></td></tr>
+        <tr><td><kbd>Prev</kbd></td><td>Previous track</td><td><span class="cat-pill cat-Media">Media</span></td></tr>
+        <tr><td><kbd>Next</kbd></td><td>Next track</td><td><span class="cat-pill cat-Media">Media</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></td><td>Media overlay</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>VolUp</kbd></td><td>Volume up</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>VolDown</kbd></td><td>Volume down</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>VolMute</kbd></td><td>Mute</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>MicMute</kbd></td><td>Mic mute</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>BrightUp</kbd></td><td>Brightness up</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>BrightDown</kbd></td><td>Brightness down</td><td><span class="cat-pill cat-Apps">Apps</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd></td><td>Logout menu (wlogout)</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></td><td>Presentation mode</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Esc</kbd></td><td>Lock screen (Hyprlock)</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td><td>Suspend</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>G</kbd></td><td>Gaming mode</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>I</kbd></td><td>Idle inhibit toggle</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>W</kbd></td><td>Wallpaper picker (waypaper)</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd></td><td>Random wallpaper</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>W</kbd></td><td>Apply theme from clipboard</td><td><span class="cat-pill cat-Utilities">Utilities</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd></td><td>Color picker</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Super</kbd> + <kbd>R</kbd></td><td>Resize submap</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Right</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Left</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Up</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Down</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>L</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>H</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>K</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>J</kbd></td><td>Resize active window (submap)</td><td><span class="cat-pill cat-Windows">Windows</span></td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Exit submap</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>Exit submap</td><td><span class="cat-pill cat-System">System</span></td></tr>
+        <tr><td><kbd>R</kbd></td><td>Exit submap</td><td><span class="cat-pill cat-System">System</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Why Lumina feels premium on Arch</h2>
+  <div class="feature-grid">
+    <div class="feature-card"><h3>Fast Session Bring-up</h3><p>UWSM + systemd user targets ensure deterministic startup ordering for swww, panel, idle, and lock.</p></div>
+    <div class="feature-card"><h3>Wallpaper-native Theming</h3><p>One wallpaper drives Matugen colors through Hyprland, Hyprlock, Ghostty, GTK, Walker, Wlogout, and Hyprpanel.</p></div>
+    <div class="feature-card"><h3>Built-in Recovery Paths</h3><p>Strict snapshot gates + rollback flows make updates safer. On GRUB, snapshots appear directly in the boot menu via grub-btrfs.</p></div>
+    <div class="feature-card"><h3>Unified Visual Tokens</h3><p>Spacing on a 4/8/12/16/24 grid. Token rendering aborts on missing keys to prevent malformed configs.</p></div>
+    <div class="feature-card"><h3>OCR + Optional Local AI</h3><p>Super+Shift+O OCRs a region, logs history, and can refine via a local hook or Ollama. Falls back to raw OCR on failure.</p></div>
+    <div class="feature-card"><h3>Host Profiles</h3><p><code>--host=loq-15irx9</code> applies NVIDIA, i915, logind, and monitor tuning; <code>generic</code> skips machine-specific overlays.</p></div>
+    <div class="feature-card"><h3>Workspace Templates</h3><p>TOML templates launch dev/media layouts — apply with <code>dotfiles workspace-template</code> or Hypr binds.</p></div>
+  </div>
+</section>
+
+<section id="recovery" class="section">
+  <p class="section-label">Recovery</p>
+  <h2 class="section-title">When Things Go Wrong</h2>
+  <p class="section-desc">Every install and update creates a Btrfs snapshot. Recovery is a single command.</p>
+  <div class="recovery-grid">
+    <div class="recovery-card">
+      <h3>Rollback</h3>
+      <p><code>rollback.sh</code> lists snapshots by date and restores the selected one. Works from any TTY.</p>
+    </div>
+    <div class="recovery-card">
+      <h3>Doctor</h3>
+      <p><code>doctor.sh</code> checks 30+ diagnostics — services, packages, config drift, battery health.</p>
+    </div>
+    <div class="recovery-card">
+      <h3>Recovery Guide</h3>
+      <p>See <code>docs/recovery.md</code> for step-by-step TTY recovery, chroot, and manual rollback.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <hr>
+  <p>lumina-dots &mdash; MIT License. Built for Arch Linux and the Hyprland ecosystem.</p>
+  <p style="margin-top:6px;font-size:.78rem;color:var(--text-muted)">LOQ 15IRX9 &middot; Intel i7-14700HX &middot; NVIDIA RTX 4060 &middot; 1920&times;1080 @ 144 Hz</p>
+</footer>
+
+<script type="application/json" id="lumina-embed-data">
+{"site":{"version":"generated","manifest":[],"keybindings":[]},"docs":[]}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.copy-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      navigator.clipboard?.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/RandomGuy1006/lumina-dots/main/scripts/install.sh)");
+    });
+  }
+});
+</script>
+</body>
+</html>

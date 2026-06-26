@@ -1,0 +1,5 @@
+[ai]
+backend = "pattern"
+allow_cloud = false
+ollama_model = "gemma3:4b"
+timeout_seconds = 25

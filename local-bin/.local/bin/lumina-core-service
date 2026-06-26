@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import sys
+from pathlib import Path
+for p in (Path(__file__).resolve().parents[3] / "apps/lib", Path.home() / ".local/share/lumina/lib"):
+    if p.exists(): sys.path.insert(0, str(p))
+from lumina_core.dbus_service import main
+raise SystemExit(main())

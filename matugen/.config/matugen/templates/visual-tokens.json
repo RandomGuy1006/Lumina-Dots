@@ -1,0 +1,66 @@
+{
+  "colors": {
+    "fg": "{{colors.on_surface.default.hex}}",
+    "muted": "{{colors.on_surface_variant.default.hex}}",
+    "surface": "{{colors.surface.default.hex}}",
+    "surface_alt": "{{colors.surface_container.default.hex}}",
+    "surface_high": "{{colors.surface_container_high.default.hex}}",
+    "accent": "{{colors.primary.default.hex}}",
+    "accent_alt": "{{colors.secondary.default.hex}}",
+    "warning": "{{colors.tertiary.default.hex}}",
+    "danger": "{{colors.error.default.hex}}",
+    "outline": "{{colors.outline.default.hex}}",
+    "on_accent": "{{colors.on_primary.default.hex}}",
+    "primary_container": "{{colors.primary_container.default.hex}}",
+    "on_primary_container": "{{colors.on_primary_container.default.hex}}",
+    "secondary_container": "{{colors.secondary_container.default.hex}}"
+  },
+  "spacing": {
+    "gap_inner": 4,
+    "chip": 8,
+    "item": 12,
+    "panel": 16,
+    "shell": 24,
+    "gap_outer": 12
+  },
+  "typography": {
+    "ui_family": "Inter",
+    "mono_family": "JetBrains Mono",
+    "caption_px": 12,
+    "body_px": 14,
+    "title_px": 18,
+    "display_px": 24,
+    "line_height": 1.4
+  },
+  "icons": {
+    "small": 16,
+    "regular": 20,
+    "large": 24
+  },
+  "stroke": {
+    "hairline": 1,
+    "focus": 2
+  },
+  "opacity": {
+    "surface": 0.88,
+    "surface_strong": 0.96,
+    "muted": 0.72,
+    "disabled": 0.42
+  },
+  "radius": {
+    "chip": 8,
+    "item": 12,
+    "shell": 16
+  },
+  "shadow": {
+    "range": 20,
+    "render_power": 3
+  },
+  "motion": {
+    "curve_css": "0.22, 1.0, 0.36, 1.0",
+    "micro_ms": 120,
+    "panel_ms": 240,
+    "exit_ms": 180,
+    "wallpaper_ms": 900
+  }
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Lumina Settings
+Comment=Appearance, wallpaper, mood, glass, blur, colors, and themes
+Exec=lumina-settings-studio
+Icon=preferences-system-symbolic
+Categories=Settings;System;
+Keywords=settings;appearance;wallpaper;mood;glass;blur;theme;

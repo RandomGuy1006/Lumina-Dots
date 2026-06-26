@@ -1,0 +1,31 @@
+@import url("colors.css");
+
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "Inter";
+}
+
+window {
+    background: rgba(6, 8, 12, 0.72);
+}
+
+button {
+    color: var(--fg);
+    background: rgba(0, 0, 0, 0.0);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-shell);
+    margin: var(--space-item);
+    min-width: 160px;
+    min-height: 160px;
+    transition: var(--motion-fast);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+}
+
+#shutdown:hover {
+    border-color: var(--danger);
+}

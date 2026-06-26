@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# local-bin/.local/bin/lumina-apply-theme
+# Wrapper: run the Matugen theming pipeline without touching swww.
+# Resolves DOTFILES_DIR from the real script location, safe under symlinks.
+set -euo pipefail
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+ROOT="$(cd "$(dirname "$SCRIPT_PATH")/../../.." && pwd)"
+exec "$ROOT/scripts/theme/apply-theme.sh" "$@"

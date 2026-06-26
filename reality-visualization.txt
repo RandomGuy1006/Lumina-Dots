@@ -1,0 +1,72 @@
+================================================================================
+                    LUMINA DOTS — REALITY VISUALIZATION SPEC
+================================================================================
+Version: 1.0.0
+Author: Antigravity Team
+Date: 2026-06-14
+
+This specification outlines the architectural design, spacings, keybindings,
+animations, layout engines, and integrations of the real Lumina Dots environment.
+It serves as the definitive reference for aligning the live simulator with the
+underlying target system.
+
+--------------------------------------------------------------------------------
+1. COMPONENT ARCHITECTURAL HIERARCHY
+--------------------------------------------------------------------------------
+The Lumina Dots system is built on Wayland and Hyprland, utilizing key modern
+desktop components:
+
+- Window Manager: Hyprland (dwindle layout engine, scratchpads, floating rules)
+- Application Launcher: Walker (D-Bus integrated, fast fuzzy search, plugins)
+- Status Bar: Hyprpanel (CSS-styled widgets, system tray, quick settings control)
+- Terminal Emulator: Ghostty (GPU-accelerated, custom fonts, blur settings)
+- Editor: Neovim (lazy.nvim configured, LSP, autocompletions, keybinds)
+- File Manager: Yazi (terminal-based file explorer, image previews)
+- Theme Engine: Matugen (generates material color palettes from wallpapers)
+- Wallpaper Manager: Waypaper + swww (smooth transition animations)
+
+--------------------------------------------------------------------------------
+2. LAYOUT & WINDOW MANAGER SPECIFICATION
+--------------------------------------------------------------------------------
+- Layout Style: Hyprland Dwindle (alternating horizontal/vertical split tree)
+- Outer Gap: 12px (space between screen borders and window edges)
+- Inner Gap: 4px (space between tiled windows)
+- Floating State: Centers windows upon request. Any user dragging/resizing
+  operation automatically detaches the window from the dwindle tree (floating).
+- Tiled Apps: Ghostty, Neovim, Yazi, System Monitor (btop).
+- Floating Overlay: Welcome window (win-welcome) must always display centered on
+  load at the highest z-index, completely isolated from dwindle tiling tree.
+
+--------------------------------------------------------------------------------
+3. ANIMATION TIMINGS & CURVES (SPRING DYNAMICS)
+--------------------------------------------------------------------------------
+Lumina Dots uses custom easing curves to feel reactive, bouncy, and premium:
+
+- Curve Definition: cubic-bezier(0.05, 0.9, 0.1, 1.05) (Spring-like effect)
+- Window Open: 300ms transition with scale and opacity
+- Window Close: 240ms transition with scale-down and slide-down
+- Workspace Transitions: 360ms slide-fade transition
+- Tiling Adjustments: Smooth left/top/width/height transitions (300ms)
+
+--------------------------------------------------------------------------------
+4. SYSTEM STATS & WIDGET WIRING
+--------------------------------------------------------------------------------
+- CPU / RAM: Clicking the status bar widgets launches the System Monitor (btop).
+- Volume / Brightness: Clicking the status bar items toggles small, focused, 
+  glassmorphic popups situated directly below the bar items.
+- Sliders: Volume and brightness adjustments in the bar popups, quick settings
+  panel, and music overlays are synchronized instantly bi-directionally.
+- Power Options: Clicking the power symbol (⏻) launches a small popup showing
+  options for Lock, Logout, Reboot, Shutdown, and Suspend.
+- Media Control: State updates (play, pause, track title) are kept synchronized
+  across the top bar widget, music overlay, and quick settings.
+
+--------------------------------------------------------------------------------
+5. MATUGEN COLOR SYSTEM
+--------------------------------------------------------------------------------
+Colors are dynamic, extracted in real time from the active wallpaper:
+- Background Base: rgba(10, 12, 20, 0.92) / #0f1a23
+- Primary Accent: #00f5ff / #7dc4ff (Matugen Primary)
+- Secondary Accent: #bf00ff / #8ce0c3 (Matugen Secondary)
+- Glassmorphism: backdrop-filter: blur(16px) saturate(1.25);
+================================================================================
