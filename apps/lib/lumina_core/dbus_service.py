@@ -58,9 +58,7 @@ def main() -> int:
                 related={"mood":("dev.lumina.mood","Changed"),"glass":("dev.lumina.glass","Changed"),"wallpaper":("dev.lumina.wallpaper","Changed")}.get(key)
                 if related: connection.emit_signal(None,path,related[0],related[1],GLib.Variant("(s)",(variant_to_string(value),)))
             elif interface == "dev.lumina.toast" and method == "Send":
-                from .toasts import _system_fallback
                 message, subtitle, category = values
-                _system_fallback(message, subtitle, category)
                 connection.emit_signal(None, path, "dev.lumina.toast", "Toast", GLib.Variant("(ss)", (message, category)))
             elif interface == "dev.lumina.glass" and method == "Set":
                 mode = GlassMode(values[0]); set_glass_mode(mode); connection.emit_signal(None, path, interface, "Changed", GLib.Variant("(s)", (mode.value,)))
