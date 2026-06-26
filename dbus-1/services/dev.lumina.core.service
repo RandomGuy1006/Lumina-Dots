@@ -1,4 +1,6 @@
 [D-BUS Service]
 Name=dev.lumina.core
+# D-Bus service Exec does not expand $HOME on its own; this shell only resolves
+# the current user's Lumina entrypoint and interpolates no untrusted input.
 Exec=/bin/sh -c 'exec "$HOME/.local/bin/lumina-core-service"'
 SystemdService=lumina-core.service
