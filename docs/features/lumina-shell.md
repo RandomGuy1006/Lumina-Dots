@@ -19,7 +19,7 @@ HyprPanel remains the fallback shell surface.
 - Optional GTK layer-shell bindings
 - `apps/lib/lumina_core`
 - `apps/shell/components/*`
-- `lumina/.config/lumina/shell.toml`
+- `lumina/.config/lumina/shell.json`
 
 ## Failure Behavior
 
@@ -37,7 +37,7 @@ Persistent public state and CLI responses use versioned envelopes. State writes 
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 - `~/.cache/lumina/visual-tokens.json`
 
 ## State Paths

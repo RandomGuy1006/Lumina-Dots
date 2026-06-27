@@ -38,7 +38,7 @@ def test_pattern_keybind_response() -> None:
 def test_no_cloud_fallback() -> None:
     ai = import_script(APPS / "lumina-ai" / "lumina-ai.py", "lumina_ai_cloud")
     config_dir = Path(os.environ["LUMINA_CONFIG_HOME"])
-    (config_dir / "ai.toml").write_text('[ai]\nbackend = "openai"\nallow_cloud = false\n', encoding="utf-8")
+    (config_dir / "ai.json").write_text('{"ai":{"backend":"openai","allow_cloud":false}}\n', encoding="utf-8")
     response = ai.answer("doctor")
     assert response.backend == "pattern"
     assert "Cloud backend disabled" in response.warning

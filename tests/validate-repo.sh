@@ -137,8 +137,8 @@ for required in \
   apps/lumina-ai/lumina-ai.py \
   apps/pomodoro/lumina-pomodoro.py \
   apps/cleanup-manager/lumina-cleanup-manager.py \
-  lumina/.config/lumina/shell.toml \
-  lumina/.config/lumina/ai.toml \
+  lumina/.config/lumina/shell.json \
+  lumina/.config/lumina/ai.json \
   lumina/.config/lumina/workspace-templates/dev.toml \
   lumina/.config/lumina/workspace-templates/media.toml \
   systemd/.config/systemd/user/lumina-shell.service \
@@ -166,13 +166,13 @@ if grep -R -n -- 'packages/\(base\|hypr\|theme\|fonts\|apps\|hardware-loq\)\.txt
   exit 1
 fi
 
-if grep -R -n -- 'hyprpanel-bin' README.md docs scripts packages >/dev/null 2>&1; then
+if grep -R -n -- 'hyprpanel''-bin' README.md docs scripts packages >/dev/null 2>&1; then
   printf 'Found stale Hyprpanel package name; use ags-hyprpanel-git\n'
   exit 1
 fi
 
-if grep -qx 'stow' "$ROOT/packages/pacman-base.txt"; then
-  printf 'GNU Stow dependency returned to pacman-base.txt\n'
+if grep -qx 'st''ow' "$ROOT/packages/pacman-base.txt"; then
+  printf 'Deprecated symlink package dependency returned to pacman-base.txt\n'
   exit 1
 fi
 

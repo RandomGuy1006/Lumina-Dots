@@ -32,7 +32,7 @@ Invalid mode names are rejected. Missing state falls back to Auto Mode.
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 
 ## State Paths
 

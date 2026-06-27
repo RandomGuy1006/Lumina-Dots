@@ -47,7 +47,7 @@ usage() {
   cat <<'EOF'
 Usage:
   bash install.sh [install|all|full] [--dry-run] [--host=loq-15irx9|generic]
-  bash install.sh dotfiles-only|stow [--host=loq-15irx9|generic]
+  bash install.sh dotfiles-only|link [--host=loq-15irx9|generic]
   bash install.sh packages-only|packages [--host=loq-15irx9|generic]
   bash install.sh hardware-only|hardware [--host=loq-15irx9|generic]
   bash install.sh doctor
@@ -94,7 +94,7 @@ if [[ $# -gt 0 && "${1}" != --* ]]; then
       MODE="full"
       shift
       ;;
-    dotfiles-only | stow | link)
+    dotfiles-only | link)
       COMMAND="install"
       MODE="dotfiles-only"
       shift

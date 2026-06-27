@@ -98,7 +98,7 @@ mv -f "${state_marker_tmp}" "${state_marker}"
 # ─── Apply Matugen theme ──────────────────────────────────────────────────────
 if ((NO_THEME == 0)); then
   log::step "Applying adaptive theme..."
-  lumina-theme apply --wallpaper="${WALLPAPER}"
+  lumina theme apply "${WALLPAPER}"
 fi
 
 if ((NO_MOOD == 0)); then

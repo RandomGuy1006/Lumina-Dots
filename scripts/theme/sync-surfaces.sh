@@ -14,27 +14,16 @@ else
   log::warn "jq not installed; Hyprpanel runtime config was not rebuilt"
 fi
 
-if command -v hyprctl >/dev/null 2>&1 && hyprctl monitors >/dev/null 2>&1; then
-  if hyprctl keyword source ~/.config/hypr/colors.conf 2>/dev/null &&
-    hyprctl keyword source ~/.config/hypr/tokens.conf 2>/dev/null; then
-    log::success "Hyprland colors sourced (no flicker)"
-  else
-    hyprctl reload && log::success "Hyprland config reloaded (fallback)"
-  fi
+if pgrep -x hyprpanel >/dev/null 2>&1; then
+  pkill -SIGUSR1 -x hyprpanel 2>/dev/null || true
+  log::success "Hyprpanel reload signal sent"
 fi
 
-if systemctl --user is-active loq-hyprpanel.service >/dev/null 2>&1; then
-  systemctl --user restart loq-hyprpanel.service &&
-    log::success "Hyprpanel user service restarted with new colors"
-elif pgrep -x hyprpanel >/dev/null 2>&1; then
-  pkill -x hyprpanel 2>/dev/null || true
-  for ((i = 0; i < 30; i++)); do
-    if ! pgrep -x hyprpanel >/dev/null 2>&1; then break; fi
-    sleep 0.1
-  done
-  hyprpanel >/dev/null 2>&1 &
-  disown
-  log::success "Hyprpanel restarted with new colors"
+if command -v hyprctl >/dev/null 2>&1 && hyprctl monitors >/dev/null 2>&1; then
+  hyprctl keyword source ~/.config/hypr/colors.conf
+  hyprctl keyword source ~/.config/hypr/tokens.conf
+  hyprctl keyword source ~/.config/hypr/conf.d/tokens-colors.conf
+  log::success "Hyprland colors sourced"
 fi
 
 if command -v gsettings >/dev/null 2>&1; then

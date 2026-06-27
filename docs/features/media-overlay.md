@@ -30,7 +30,7 @@ HyprPanel remains available as the broader fallback shell surface.
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 
 ## State Paths
 

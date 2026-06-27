@@ -32,10 +32,9 @@ under `~/.local/state/lumina/shell/`.
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 
 ## State Paths
 
 - `~/.local/state/lumina/shell/popup-last.json`
 - `~/.local/state/lumina/shell/popup-queue.json`
-

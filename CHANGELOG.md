@@ -43,7 +43,7 @@
 ## V6.0.0 - 2026-05-27
 
 ### Added
-- Custom `lib/link.sh` symlink engine replacing GNU Stow.
+- Custom `lib/link.sh` symlink engine replacing the old external symlink dependency.
 - Generic host fallback for non-LOQ hardware.
 - GTK config backup before overwrites.
 - Legacy script redirects to canonical pipeline.

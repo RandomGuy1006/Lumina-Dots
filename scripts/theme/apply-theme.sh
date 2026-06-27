@@ -20,6 +20,10 @@ fi
 mkdir -p "${HOME}/.cache/matugen"
 cp "$(realpath "${WALLPAPER}")" "${HOME}/.cache/matugen/wallpaper-cache" 2>/dev/null || true
 
+if command -v lumina >/dev/null 2>&1; then
+  exec lumina theme apply "$(realpath "${WALLPAPER}")"
+fi
+
 if command -v lumina-theme >/dev/null 2>&1; then
   exec lumina-theme apply --wallpaper="$(realpath "${WALLPAPER}")"
 fi

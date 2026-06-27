@@ -2,7 +2,7 @@
 
 ## Completed in V6
 
-- ✅ Custom symlink engine (replaced GNU Stow dependency)
+- ✅ Custom symlink engine (replaced the old external symlink dependency)
 - ✅ Generic host profile for non-LOQ machines
 - ✅ GTK/fontconfig config backup before overwrites
 - ✅ Unified theme pipeline (single Matugen `-c` config flag across all callers)

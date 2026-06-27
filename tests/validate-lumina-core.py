@@ -418,7 +418,7 @@ def validate_wallpaper_step4_wiring() -> None:
     settings_text = settings.read_text(encoding="utf-8")
     required_script_needles = (
         "from lumina_core.wallpaper import effective_transition, swww_transition",
-        "lumina-theme apply --wallpaper",
+        "lumina theme apply",
         "lumina-mood detect --wallpaper",
         'sleep "${TRANSITION_DURATION}"',
         "generate_thumbnail",
@@ -434,7 +434,7 @@ def validate_wallpaper_step4_wiring() -> None:
         for needle in (
             "swww img",
             'sleep "${TRANSITION_DURATION}"',
-            "lumina-theme apply --wallpaper",
+            "lumina theme apply",
             "lumina-mood detect --wallpaper",
             'lumina-toast "Wallpaper applied" "$(basename',
         )

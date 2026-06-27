@@ -10,6 +10,5 @@ Implemented entrypoints:
 - `lumina-shell osd volume` and `lumina-shell osd brightness` show the current
   OSD value through Lumina Core notification fallback.
 
-Configuration lives at `~/.config/lumina/shell.toml`. Runtime logs are written
+Configuration lives at `~/.config/lumina/shell.json`. Runtime logs are written
 under `~/.local/state/lumina/logs/`.
-

@@ -1,19 +1,55 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, os, sys
+
+import argparse
+import json
+import os
+import sys
 from pathlib import Path
+
 for p in (Path(__file__).resolve().parents[3] / "apps/lib", Path.home() / ".local/share/lumina/lib"):
-    if p.exists(): sys.path.insert(0, str(p))
+    if p.exists():
+        sys.path.insert(0, str(p))
+
 from lumina_core.theme import apply_theme, load_tokens, preview_tokens
 from lumina_core.toasts import toast
-p=argparse.ArgumentParser(prog="lumina-theme"); s=p.add_subparsers(dest="command", required=True)
-ap=s.add_parser("apply"); ap.add_argument("--wallpaper"); ap.add_argument("--temperature", type=int, default=6500)
-s.add_parser("reset"); pr=s.add_parser("preview"); pr.add_argument("path"); s.add_parser("export"); a=p.parse_args()
-if a.command == "export": print(json.dumps(load_tokens(), indent=2, sort_keys=True))
-elif a.command == "preview": print(json.dumps(preview_tokens(a.path), indent=2, sort_keys=True))
-else:
-    if a.command == "reset":
-        override=Path(os.environ.get("LUMINA_CONFIG_HOME", Path.home()/".config/lumina"))/"palette-overrides.json"; override.unlink(missing_ok=True)
-        current_file=Path.home()/"Pictures/Wallpapers/.current"; wallpaper=current_file.read_text(encoding="utf-8").strip() if current_file.exists() else None; tokens=apply_theme(wallpaper)
-    else: tokens=apply_theme(a.wallpaper, color_temperature=a.temperature)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(prog="lumina-theme")
+    subcommands = parser.add_subparsers(dest="command", required=True)
+    apply = subcommands.add_parser("apply")
+    apply.add_argument("--wallpaper")
+    apply.add_argument("--temperature", type=int, default=6500)
+    subcommands.add_parser("reset")
+    preview = subcommands.add_parser("preview")
+    preview.add_argument("path")
+    subcommands.add_parser("export")
+    args = parser.parse_args()
+
+    if args.command == "export":
+        print(json.dumps(load_tokens(), indent=2, sort_keys=True))
+        return 0
+    if args.command == "preview":
+        print(json.dumps(preview_tokens(args.path), indent=2, sort_keys=True))
+        return 0
+
+    try:
+        if args.command == "reset":
+            override = Path(os.environ.get("LUMINA_CONFIG_HOME", Path.home() / ".config/lumina")) / "palette-overrides.json"
+            override.unlink(missing_ok=True)
+            current_file = Path.home() / "Pictures/Wallpapers/.current"
+            wallpaper = current_file.read_text(encoding="utf-8").strip() if current_file.exists() else None
+            apply_theme(wallpaper)
+        else:
+            apply_theme(args.wallpaper, color_temperature=args.temperature)
+    except Exception as exc:
+        print(f"lumina-theme: theme pipeline failed: {exc}", file=sys.stderr)
+        return 1
+
     toast("Theme updated from wallpaper", category="success")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

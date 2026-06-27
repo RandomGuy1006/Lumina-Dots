@@ -6,7 +6,7 @@ Lumina AI is the Phase 5 optional assistant.
 - CLI: `lumina-ai`
 - Dotfiles command: `dotfiles ai`
 - Keybind: `Super + A`
-- Config: `~/.config/lumina/ai.toml`
+- Config: `~/.config/lumina/ai.json`
 
 The default backend is `pattern`, which is deterministic and works with no model, network, API key, or cloud dependency. Pattern mode can explain keybinds, Doctor, themes, recovery, Hub, Mission Control, and release validation commands.
 

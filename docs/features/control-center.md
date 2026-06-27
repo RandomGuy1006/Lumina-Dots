@@ -38,9 +38,8 @@ User-facing changes route through the Universal Popup Framework.
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 
 ## State Paths
 
 - Shared Lumina Shell popup and mode state under `~/.local/state/lumina/shell/`.
-

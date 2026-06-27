@@ -36,9 +36,8 @@ If GTK is unavailable, the app prints CLI guidance and exits cleanly.
 
 ## Config Paths
 
-- `~/.config/lumina/shell.toml`
+- `~/.config/lumina/shell.json`
 
 ## State Paths
 
 - `~/.local/state/lumina/welcome/state.json`
-

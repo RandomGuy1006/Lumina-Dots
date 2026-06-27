@@ -157,7 +157,7 @@ def action_for(dispatcher: str, command: str) -> str:
         ("ocr-region", "Region OCR"),
         ("grimblast", "Screenshot"),
         ("cliphist", "Clipboard history"),
-        ("hyprctl reload", "Reload desktop shell"),
+        ("hyprctl keyword source ~/.config/hypr/colors.conf", "Source desktop shell colors"),
         ("movefocus", "Move focus"),
         ("movewindow", "Move window"),
         ("resizeactive", "Resize active window"),

@@ -121,12 +121,15 @@ if [[ "${SKIP_PACKAGES}" == "false" ]]; then
   bash "${DOTFILES_DIR}/scripts/maintenance/update.sh" || log::warn "Maintenance cleanup reported issues"
 fi
 
-# Step 6: Reload Hyprland config if running
-log::section "Reloading compositor"
+# Step 6: Source runtime Hyprland theme files if running
+log::section "Sourcing compositor theme files"
 if command -v hyprctl &>/dev/null && hyprctl monitors &>/dev/null 2>&1; then
-  hyprctl reload && log::success "Hyprland reloaded"
+  hyprctl keyword source ~/.config/hypr/colors.conf
+  hyprctl keyword source ~/.config/hypr/tokens.conf
+  hyprctl keyword source ~/.config/hypr/conf.d/tokens-colors.conf
+  log::success "Hyprland theme files sourced"
 else
-  log::info "Not in Hyprland session — skipping reload"
+  log::info "Not in Hyprland session — skipping compositor source"
 fi
 
 log::header "Update Complete"

@@ -1,9 +1,9 @@
-"""Configuration helpers for Lumina TOML files."""
+"""Configuration helpers for Lumina JSON files."""
 
 from __future__ import annotations
 
+import json
 import os
-import tomllib
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -19,22 +19,23 @@ def config_home() -> Path:
 
 
 def config_path(name: str, base: str | os.PathLike[str] | None = None) -> Path:
-    filename = name if name.endswith(".toml") else f"{name}.toml"
+    filename = name if name.endswith(".json") else f"{name}.json"
     root = Path(base).expanduser() if base is not None else config_home()
     return root / filename
 
 
-def load_toml(path: str | os.PathLike[str]) -> dict[str, Any]:
-    toml_path = Path(path).expanduser()
+def load_json(path: str | os.PathLike[str]) -> dict[str, Any]:
+    json_path = Path(path).expanduser()
     try:
-        with toml_path.open("rb") as handle:
-            loaded = tomllib.load(handle)
+        loaded = json.loads(json_path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         raise
-    except tomllib.TOMLDecodeError as exc:
-        raise ConfigError(f"Invalid TOML: {toml_path}: {exc}") from exc
+    except json.JSONDecodeError as exc:
+        raise ConfigError(f"Invalid JSON: {json_path}: {exc}") from exc
     except OSError as exc:
-        raise ConfigError(f"Could not read config: {toml_path}: {exc}") from exc
+        raise ConfigError(f"Could not read config: {json_path}: {exc}") from exc
+    if not isinstance(loaded, dict):
+        raise ConfigError(f"Invalid JSON: {json_path}: root must be an object")
     return loaded
 
 
@@ -46,7 +47,7 @@ def load_config(
     defaults_dict = dict(defaults or {})
     path = config_path(name, base)
     try:
-        loaded = load_toml(path)
+        loaded = load_json(path)
     except FileNotFoundError:
         return defaults_dict
     return deep_merge(defaults_dict, loaded)
@@ -62,33 +63,11 @@ def deep_merge(base: Mapping[str, Any], override: Mapping[str, Any]) -> dict[str
     return merged
 
 
-def _format_value(value: Any) -> str:
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    if isinstance(value, int | float):
-        return str(value)
-    return '"' + str(value).replace("\\", "\\\\").replace('"', '\\"') + '"'
-
-
-def toml_from_mapping(data: Mapping[str, Any]) -> str:
-    lines: list[str] = []
-    for key, value in data.items():
-        if isinstance(value, Mapping):
-            if lines:
-                lines.append("")
-            lines.append(f"[{key}]")
-            for child_key, child_value in value.items():
-                lines.append(f"{child_key} = {_format_value(child_value)}")
-        else:
-            lines.append(f"{key} = {_format_value(value)}")
-    return "\n".join(lines) + "\n"
-
-
 def ensure_config(name: str, defaults: Mapping[str, Any], base: str | os.PathLike[str] | None = None) -> Path:
     path = config_path(name, base)
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(path.suffix + ".tmp")
-        tmp.write_text(toml_from_mapping(defaults), encoding="utf-8")
+        tmp.write_text(json.dumps(defaults, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         os.replace(tmp, path)
     return path

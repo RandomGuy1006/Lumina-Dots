@@ -158,7 +158,7 @@ dotfiles theme ~/Pictures/Wallpapers/image.jpg
        │       ├─ ~/.config/starship.toml           (prompt)
        │       ├─ ~/.config/yazi/theme.toml         (file manager)
        │       └─ ~/.config/wlogout/colors.css      (power menu)
-       └─ sync-surfaces.sh     (token render + Hyprland reload + Hyprpanel rebuild/restart)
+       └─ sync-surfaces.sh     (token render + Hyprland keyword sourcing + Hyprpanel CSS signal)
 ```
 
 ### Unified design tokens (visual-tokens.json)
@@ -205,7 +205,7 @@ lumina-dots/
 └── docs/            → install-manual.md, install-archinstall.md, keybindings.md
 ```
 
-**Symlink engine**: `lib/link.sh` — `link::create_tree` (replaces GNU Stow). Idempotent, backs up existing files, verifiable.
+**Symlink engine**: `lib/link.sh` — `link::create_tree`. Idempotent, backs up existing files, verifiable.
 
 ---
 
@@ -258,7 +258,7 @@ lumina-dots/
 
 ## V6 Codex Changelog
 
-- **Removed GNU Stow dependency** — replaced with custom `lib/link.sh` symlink engine
+- **Removed external symlink dependency** — replaced with custom `lib/link.sh` symlink engine
 - **Unified theme pipeline** — all callers now use `scripts/theme/apply-theme.sh` with Matugen's `-c` config flag
 - **Generated-file hygiene** — Starship, Yazi, Hyprpanel, Walker, Ghostty, and Wlogout theme outputs stay local instead of writing back into tracked source files
 - **Generic host fallback** — non-LOQ systems use safe defaults from `lib/common.sh` when no host profile is present

@@ -1,0 +1,30 @@
+{
+  "shell": {
+    "enable_osd": true,
+    "enable_notifications": false,
+    "enable_dashboard": false,
+    "enable_workspace_indicator": true,
+    "enable_media": false,
+    "hyprpanel_fallback": true
+  },
+  "osd": {
+    "timeout_ms": 1200,
+    "anchor": "top"
+  },
+  "notifications": {
+    "take_over_from_hyprpanel": false
+  },
+  "dashboard": {
+    "show_battery": true,
+    "show_network": true,
+    "show_audio": true,
+    "show_theme": true
+  },
+  "modes": {
+    "default": "auto",
+    "available": "quiet,auto,performance,custom"
+  },
+  "welcome": {
+    "show_on_first_login": true
+  }
+}

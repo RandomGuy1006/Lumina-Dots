@@ -17,7 +17,6 @@
   "timezone": "Asia/Kolkata",
   "packages": [
     "git",
-    "stow",
     "btrfs-progs",
     "snapper",
     "snap-pac",
@@ -29,4 +28,3 @@
     "layout": "btrfs-subvolumes"
   }
 }
-

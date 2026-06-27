@@ -35,4 +35,4 @@ workspace = 10, monitor:, default:true
 EOF
 fi
 
-hyprctl reload >/dev/null 2>&1 || true
+hyprctl keyword source ~/.config/hypr/custom/monitors.conf >/dev/null 2>&1 || true

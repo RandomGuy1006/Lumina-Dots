@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  lumina theme apply <wallpaper>
+  lumina theme preview <wallpaper>
+  lumina theme export
+EOF
+}
+
+case "${1:-}" in
+  theme)
+    shift
+    case "${1:-}" in
+      apply)
+        shift
+        wallpaper="${1:-}"
+        [[ -n "${wallpaper}" ]] || { usage >&2; exit 2; }
+        exec lumina-theme apply --wallpaper="${wallpaper}" "${@:2}"
+        ;;
+      preview)
+        shift
+        wallpaper="${1:-}"
+        [[ -n "${wallpaper}" ]] || { usage >&2; exit 2; }
+        exec lumina-theme preview "${wallpaper}" "${@:2}"
+        ;;
+      export)
+        shift
+        exec lumina-theme export "$@"
+        ;;
+      *)
+        usage >&2
+        exit 2
+        ;;
+    esac
+    ;;
+  -h | --help | help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac
